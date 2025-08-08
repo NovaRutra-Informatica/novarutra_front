@@ -1,38 +1,38 @@
 name: Deploy to GitHub Pages
 
 on:
-  push:
-    branches:
-      - main
+    push:
+        branches:
+            - main
 
 jobs:
-  build-deploy:
-    runs-on: ubuntu-latest
+    build-deploy:
+        runs-on: ubuntu-latest
 
-    permissions:
-      contents: write
-      pull-requests: read
+        permissions:
+            contents: write
+            pull-requests: read
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "22.17.0"
+            - name: Set up Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "22.17.0"
 
-      - name: Install dependencies
-        run: npm install
+            - name: Install dependencies
+              run: npm ci
 
-      - name: Build the project
-        run: npm run build
+            - name: Build the project
+              run: npm run build
 
-      - name: Create CNAME file
-        run: echo "novarutra.com.br" > ./dist/CNAME
+            - name: Create CNAME file
+              run: echo "novarutra.com.br" > ./dist/CNAME
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+            - name: Deploy to GitHub Pages
+              uses: peaceiris/actions-gh-pages@v4
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  publish_dir: ./dist

@@ -1,10 +1,10 @@
-import ExamplePage from "../pages/ExamplePage.tsx";
 import { Route, Routes } from "react-router-dom";
+import Main from "@pages/Main.tsx";
 
 export default function AppRoutes() {
     return (
         <Routes>
-            <Route path={"/"} element={<ExamplePage />} />
+            <Route path={"/"} element={<Main />} />
         </Routes>
     );
 }

@@ -1,32 +1,17 @@
-<h1 align="center"> React + TypeScript + SWC + Vite + Tailwind + Eslint + Prettier + Husky + Jest + Testing Library</h1>
-<br>
+<h1 align="center"> NovaRutra Informática LTDA </h1>
+
+<img src="src/app/assets/NovaRutraAzul.jpg" alt="novarutra" align="center" />
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" align="center" width="80" height="80"/>
-<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg" alt="typescript" align="center" width="80" height="80"/>
-<img src="https://swc.rs/logo.png" alt="swc" align="center" width="120" height="80"/>
-<img src="https://github.com/alexZ7000/UsinaEcoCultural/assets/78627928/b82095b6-48ad-42c2-90a3-a2d0ea890da1" alt="vite" align="center" width="80" height="80"/>
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tailwind_CSS_Logo.svg/1024px-Tailwind_CSS_Logo.svg.png?20230715030042" alt="tailwind" align="center" width="75" height="60" />
-<img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmiguelmachado.dev%2Fassets%2Fimg%2F1_3adbbrn3gotbz72xqfo96g.png&f=1&nofb=1&ipt=815bdc1a92129a989194fc10b59209968b7cb74bd6273ab809a219462fffe4e8&ipo=images" alt="ESLint" align="center" width="120" height="80"/>
-<img src="https://prettier.io/icon.png" alt="Prettier" align="center" width="80" height="80"/>
-🐶
-<img src="https://cdn.freebiesupply.com/logos/large/2x/jest-logo-png-transparent.png" alt="jest" width="80" />
-<img src="https://seeklogo.com/images/T/testing-library-logo-FFB8C5C0B6-seeklogo.com.png?v=637852764070000000" alt="Testing Library" width="80" /></p>
+Um portfólio de página única, moderno e responsivo para a empresa de consultoria em T.I. Novarutra.
+</p>
 
-This template provides a minimal setup to get React working in Vite with HMR
-with ESLint/PRETTIER rules, and Husky to automate the process.
-
-In root folder run this command
-
-```node
-npm install
-```
-
-Template made in NodeJS: 22.17.0
-
-If you have problems with Husky or doing commits in general, you can run the
-command below to remove the hooks:
-
-```bash
-git config --local --unset-all core.hooksPath
-```
+<div align="center">
+<img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React"/>
+<img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript"/>
+<img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite"/>
+<img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS"/>
+<img src="https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white" alt="ESLint"/>
+<img src="https://img.shields.io/badge/Prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=white" alt="Prettier"/>
+<img src="https://img.shields.io/badge/Husky-D0D0D0?style=for-the-badge&logo=husky&logoColor=black" alt="Husky"/>
+</div>

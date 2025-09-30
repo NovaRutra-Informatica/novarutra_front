@@ -9,7 +9,9 @@ export default function Contact() {
                     Pronto para otimizar a TI da sua empresa?
                 </h2>
                 <p className="mt-6 text-lg leading-8 text-gray-300">
-                    Vamos conversar sobre suas necessidades. Envie um e-mail e retornarei o mais breve possível para agendarmos uma conversa.
+                    Vamos conversar sobre suas necessidades. Envie um e-mail e
+                    retornarei o mais breve possível para agendarmos uma
+                    conversa.
                 </p>
                 <div className="mt-10">
                     <a
@@ -23,5 +25,5 @@ export default function Contact() {
                 </div>
             </AnimateOnScroll>
         </div>
-    )
+    );
 }

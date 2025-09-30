@@ -11,14 +11,14 @@ interface AnimateOnScrollProps {
 }
 
 export default function AnimateOnScroll({
-                                            children,
-                                            className = "",
-                                            delay = 0,
-                                            direction = "up",
-                                        }: AnimateOnScrollProps) {
+    children,
+    className = "",
+    delay = 0,
+    direction = "up"
+}: AnimateOnScrollProps) {
     const { ref, inView } = useInView({
         triggerOnce: true,
-        threshold: 0.1,
+        threshold: 0.1
     });
 
     const getInitialClasses = () => {

@@ -3,7 +3,10 @@ import HeroCarousel from "./HeroCarousel";
 
 export default function Hero() {
     return (
-        <div id="inicio" className="relative isolate overflow-hidden bg-gray-900 pt-14">
+        <div
+            id="inicio"
+            className="relative isolate overflow-hidden bg-gray-900 pt-14"
+        >
             <HeroCarousel />
 
             <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
@@ -15,7 +18,10 @@ export default function Hero() {
                     </AnimateOnScroll>
                     <AnimateOnScroll delay={200}>
                         <p className="mt-6 text-lg leading-8 text-gray-300">
-                            Atendimento técnico especializado em manutenção de computadores, servidores, redes e suporte remoto, garantindo a estabilidade do seu ambiente de trabalho.
+                            Atendimento técnico especializado em manutenção de
+                            computadores, servidores, redes e suporte remoto,
+                            garantindo a estabilidade do seu ambiente de
+                            trabalho.
                         </p>
                     </AnimateOnScroll>
                     <AnimateOnScroll delay={400}>
@@ -27,7 +33,10 @@ export default function Hero() {
                             >
                                 Conheça meus serviços
                             </a>
-                            <a href="#contato" className="text-sm font-semibold leading-6 text-white transition-transform duration-300 hover:scale-105">
+                            <a
+                                href="#contato"
+                                className="text-sm font-semibold leading-6 text-white transition-transform duration-300 hover:scale-105"
+                            >
                                 Fale comigo <span aria-hidden="true">→</span>
                             </a>
                         </div>

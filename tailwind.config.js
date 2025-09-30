@@ -1,3 +1,5 @@
+import defaultTheme from "tailwindcss/defaultTheme";
+
 /** @type {import('tailwindcss').Config} */
 export default {
     content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
@@ -5,12 +7,13 @@ export default {
         extend: {
             colors: {
                 "novarutra-blue": "#0A2F5C",
-                "novarutra-yellow": "#FFC700",
+                "novarutra-yellow": "#FFC700"
             },
+
             fontFamily: {
-                sans: ['Poppins', ...defaultTheme.fontFamily.sans],
-            },
-        },
+                sans: ["Poppins", ...defaultTheme.fontFamily.sans]
+            }
+        }
     },
-    plugins: [],
+    plugins: []
 };

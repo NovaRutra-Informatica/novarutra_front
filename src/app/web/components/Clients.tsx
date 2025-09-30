@@ -13,21 +13,21 @@ export default function Clients() {
                     <div className="mx-auto mt-16 grid grid-cols-4 items-center gap-x-8 gap-y-10 sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:grid-cols-5">
                         <AnimateOnScroll direction="zoom" delay={0}>
                             <img
-                                    className="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
-                                    src={ClientLogo1}
-                                    alt="Client 1"
-                                    width={158}
-                                    height={48}
-                                />
+                                className="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
+                                src={ClientLogo1}
+                                alt="Client 1"
+                                width={158}
+                                height={48}
+                            />
                         </AnimateOnScroll>
                         <AnimateOnScroll direction="zoom" delay={100}>
-                        <img
-                            className="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
-                            src={ClientLogo2}
-                            alt="Client 2"
-                            width={158}
-                            height={48}
-                        />
+                            <img
+                                className="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
+                                src={ClientLogo2}
+                                alt="Client 2"
+                                width={158}
+                                height={48}
+                            />
                         </AnimateOnScroll>
                         <img
                             className="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
@@ -37,22 +37,22 @@ export default function Clients() {
                             height={48}
                         />
                         <AnimateOnScroll direction="zoom" delay={200}>
-                        <img
-                            className="col-span-2 max-h-12 w-full object-contain sm:col-start-2 lg:col-span-1"
-                            src={ClientLogo2}
-                            alt="Client 4"
-                            width={158}
-                            height={48}
-                        />
+                            <img
+                                className="col-span-2 max-h-12 w-full object-contain sm:col-start-2 lg:col-span-1"
+                                src={ClientLogo2}
+                                alt="Client 4"
+                                width={158}
+                                height={48}
+                            />
                         </AnimateOnScroll>
                         <AnimateOnScroll direction="zoom" delay={300}>
-                        <img
-                            className="col-span-2 col-start-2 max-h-12 w-full object-contain sm:col-start-auto lg:col-span-1"
-                            src={ClientLogo1}
-                            alt="Client 5"
-                            width={158}
-                            height={48}
-                        />
+                            <img
+                                className="col-span-2 col-start-2 max-h-12 w-full object-contain sm:col-start-auto lg:col-span-1"
+                                src={ClientLogo1}
+                                alt="Client 5"
+                                width={158}
+                                height={48}
+                            />
                         </AnimateOnScroll>
                     </div>
                 </AnimateOnScroll>

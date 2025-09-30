@@ -17,16 +17,33 @@ export default function About() {
                     </AnimateOnScroll>
                     <AnimateOnScroll direction="right" delay={200}>
                         <div className="text-base leading-7 text-gray-700 lg:max-w-lg">
-                            <p className="text-base font-semibold leading-7 text-novarutra-blue">Quem sou eu</p>
+                            <p className="text-base font-semibold leading-7 text-novarutra-blue">
+                                Quem sou eu
+                            </p>
                             <h1 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
                                 Um especialista dedicado ao seu negócio
                             </h1>
                             <div className="max-w-xl">
                                 <p className="mt-6">
-                                    Meu nome é <strong>Alessandro Pereira Lima Filho</strong>, sou o fundador e técnico especialista por trás da Novarutra Informática. Com anos de experiência no mercado, minha missão é oferecer um serviço de T.I. personalizado e de alta qualidade.
+                                    Meu nome é{" "}
+                                    <strong>
+                                        Alessandro Pereira Lima Filho
+                                    </strong>
+                                    , sou o fundador e técnico especialista por
+                                    trás da Novarutra Informática. Com anos de
+                                    experiência no mercado, minha missão é
+                                    oferecer um serviço de T.I. personalizado e
+                                    de alta qualidade.
                                 </p>
                                 <p className="mt-8">
-                                    Acredito que a tecnologia deve ser uma aliada, não uma complicação. Por isso, atendo cada cliente de forma direta e transparente, tratando sua empresa como uma parceira e garantindo que sua infraestrutura tecnológica funcione perfeitamente para que você possa focar no que realmente importa: o crescimento do seu negócio.
+                                    Acredito que a tecnologia deve ser uma
+                                    aliada, não uma complicação. Por isso,
+                                    atendo cada cliente de forma direta e
+                                    transparente, tratando sua empresa como uma
+                                    parceira e garantindo que sua infraestrutura
+                                    tecnológica funcione perfeitamente para que
+                                    você possa focar no que realmente importa: o
+                                    crescimento do seu negócio.
                                 </p>
                             </div>
                         </div>

@@ -2,9 +2,24 @@ import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { useEffect, useState } from "react";
 import Banner1 from "@assets/NovaRutraAzul.jpg";
-import Banner2 from "@assets/BannerNovaRutra.png";
+import Banner3 from "@assets/image1.jpeg";
+import Banner6 from "@assets/image4.jpeg";
+import Banner8 from "@assets/image6.jpeg";
+import Banner9 from "@assets/image7.jpeg";
+import Banner10 from "@assets/image8.jpeg";
+import Banner11 from "@assets/image9.jpeg";
+import Banner12 from "@assets/image10.jpeg";
 
-const images = [Banner1, Banner2];
+const images = [
+    Banner3,
+    Banner6,
+    Banner8,
+    Banner9,
+    Banner10,
+    Banner11,
+    Banner12,
+    Banner1
+];
 
 export default function HeroCarousel() {
     const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [

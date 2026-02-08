@@ -1,0 +1,22 @@
+<section class="process-section" id="como-trabalhamos">
+    <div class="container">
+        <div class="header">
+            <h3 class="subtitle">Nosso Método</h3>
+            <h2>Como transformamos seu negócio</h2>
+        </div>
+
+        <div class="steps-container">
+            @for (step of steps; track step.number) {
+                <div class="step-card">
+                    <div class="icon-box">
+                        <i [class]="step.icon"></i>
+                        <span class="step-number">{{ step.number }}</span>
+                    </div>
+                    <h3>{{ step.title }}</h3>
+                    <p>{{ step.desc }}</p>
+                    <div class="connector"></div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

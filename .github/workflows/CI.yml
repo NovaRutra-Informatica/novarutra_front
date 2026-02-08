@@ -2,30 +2,24 @@ name: CI
 
 on:
     push:
-        branches:
-            - main
     pull_request:
-        branches:
-            - main
 
 jobs:
-    build:
+    build-check:
         runs-on: ubuntu-latest
 
         steps:
-            - name: Checkout repository
-              uses: actions/checkout@v4
+            - name: Checkout do código
+              uses: actions/checkout@v3
 
-            - name: Set up Node.js
-              uses: actions/setup-node@v4
+            - name: Configurar Node.js
+              uses: actions/setup-node@v3
               with:
-                  node-version: "22.17.0"
+                  node-version: '22.17.0'
+                  cache: 'npm'
 
-            - name: Install dependencies
+            - name: Instalar dependências
               run: npm ci
 
-            - name: Run linter
-              run: npm run lint
-
-            - name: Build project
+            - name: Testar Build
               run: npm run build

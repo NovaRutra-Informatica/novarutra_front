@@ -1,0 +1,145 @@
+@use 'variables' as *;
+
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 1.5rem 0;
+    transition: all 0.4s ease;
+    background: transparent;
+
+    &.scrolled {
+        background: $glass-bg;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        padding: 1rem 0;
+        border-bottom: $glass-border;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+    }
+
+    .logo-area {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        cursor: pointer;
+
+        .logo-img {
+            height: 45px;
+            transition: transform 0.3s;
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: 1.5px;
+            color: $text-main;
+        }
+
+        &:hover .logo-img {
+            transform: rotate(15deg);
+        }
+    }
+
+    .menu {
+        display: flex;
+        list-style: none;
+        gap: 30px;
+        align-items: center;
+
+        li a {
+            text-decoration: none;
+            color: $text-main;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            position: relative;
+
+            &:not(.btn-contact)::after {
+                content: '';
+                position: absolute;
+                width: 0;
+                height: 2px;
+                bottom: -5px;
+                left: 0;
+                background-color: $primary-color;
+                transition: width 0.3s;
+            }
+
+            &:not(.btn-contact):hover {
+                color: $primary-color;
+                &::after {
+                    width: 100%;
+                }
+            }
+        }
+
+        .btn-contact {
+            background: $primary-color;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 0 10px rgba($primary-color, 0.3);
+
+            &:hover {
+                background: $text-main;
+                color: $primary-color;
+                box-shadow: 0 0 20px $primary-glow;
+            }
+        }
+    }
+
+    .mobile-toggle {
+        display: none;
+        flex-direction: column;
+        gap: 6px;
+        cursor: pointer;
+
+        span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background-color: $text-main;
+            transition: 0.3s;
+        }
+    }
+
+    @media (max-width: $mobile) {
+        .mobile-toggle {
+            display: flex;
+        }
+
+        .menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: $bg-card;
+            flex-direction: column;
+            padding: 20px 0;
+            gap: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-20px);
+            transition: all 0.3s ease;
+
+            &.active {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+        }
+    }
+}

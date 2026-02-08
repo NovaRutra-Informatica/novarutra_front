@@ -1,0 +1,43 @@
+<section id="inicio" class="hero">
+    <div class="hero-bg-carousel">
+        <div class="overlay"></div>
+
+        @for (img of heroImages; track img; let i = $index) {
+            <div
+                class="bg-slide"
+                [class.active]="i === currentIndex()"
+                [ngStyle]="{ 'background-image': 'url(' + img + ')' }"
+            ></div>
+        }
+    </div>
+
+    <div class="container">
+        <div class="content">
+            <span class="badge-tech fade-in-1">
+                <i class="fas fa-rocket"></i> INOVAÇÃO & SEGURANÇA
+            </span>
+
+            <h1 class="fade-in-2">
+                Sua empresa no <br />
+                <span class="highlight">Próximo Nível</span>
+            </h1>
+
+            <p class="fade-in-3">
+                Transformamos desafios complexos de T.I. em soluções
+                estratégicas. Infraestrutura, desenvolvimento e consultoria
+                especializada para alavancar seus resultados.
+            </p>
+
+            <div class="cta-group fade-in-4">
+                <a href="#contato" class="btn-primary">
+                    <i class="fas fa-paper-plane me-2"></i> Solicitar Orçamento
+                </a>
+                <a href="#servicos" class="btn-outline"> Conhecer Serviços </a>
+            </div>
+        </div>
+    </div>
+
+    <a href="#sobre" class="scroll-down">
+        <i class="fas fa-chevron-down"></i>
+    </a>
+</section>

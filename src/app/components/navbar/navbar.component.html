@@ -1,0 +1,30 @@
+<nav [class.scrolled]="isScrolled()">
+    <div class="container">
+        <div class="logo-area">
+            <img
+                src="assets/LOGO_WHITE-WITHOUT_BACKGROUND.png"
+                alt="NovaRutra Logo"
+                class="logo-img"
+            />
+            <span class="logo-text">NOVARUTRA</span>
+        </div>
+
+        <div class="mobile-toggle" (click)="toggleMobileMenu()">
+            <span [class.open]="isMobileMenuOpen()"></span>
+            <span [class.open]="isMobileMenuOpen()"></span>
+            <span [class.open]="isMobileMenuOpen()"></span>
+        </div>
+
+        <ul class="menu" [class.active]="isMobileMenuOpen()">
+            <li><a href="#inicio" (click)="closeMenu()">Início</a></li>
+            <li><a href="#sobre" (click)="closeMenu()">Sobre</a></li>
+            <li><a href="#servicos" (click)="closeMenu()">Serviços</a></li>
+            <li><a href="#clientes" (click)="closeMenu()">Clientes</a></li>
+            <li>
+                <a href="#contato" class="btn-contact" (click)="closeMenu()">
+                    Contato
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>

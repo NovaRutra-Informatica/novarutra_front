@@ -1,0 +1,19 @@
+<section class="partners-section">
+    <div class="container">
+        <h3 class="section-label">Empresas que confiam na NovaRutra</h3>
+
+        <div class="slider">
+            <div class="slide-track">
+                @for (partner of partners; track $index) {
+                    <div class="slide">
+                        <img
+                            [src]="partner.logo"
+                            [alt]="partner.name"
+                            title="{{ partner.name }}"
+                        />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>

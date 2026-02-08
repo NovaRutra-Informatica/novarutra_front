@@ -1,0 +1,19 @@
+<section class="stats-section">
+    <div class="container">
+        <div class="stats-grid">
+            @for (stat of stats; track stat.label) {
+                <div class="stat-item">
+                    <div
+                        class="number"
+                        [appCountUp]="stat.value"
+                        [suffix]="stat.suffix"
+                        [duration]="2500"
+                    >
+                        0
+                    </div>
+                    <p class="label">{{ stat.label }}</p>
+                </div>
+            }
+        </div>
+    </div>
+</section>

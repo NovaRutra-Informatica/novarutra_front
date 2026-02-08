@@ -1,0 +1,69 @@
+<app-navbar></app-navbar>
+<app-hero></app-hero>
+
+<app-partners></app-partners>
+
+<app-stats></app-stats>
+
+<section id="sobre" class="section">
+    <div class="container">
+        <div class="grid-split">
+            <div class="text-content" appFadeIn>
+                <h3 class="section-title">Quem Somos</h3>
+                <h2>
+                    Mais do que suporte, somos seus
+                    <span class="text-primary">Parceiros</span>
+                </h2>
+                <p>
+                    Meu nome é Alessandro Pereira Lima Filho. Com anos de
+                    experiência no mercado, minha missão na
+                    <strong>NovaRutra</strong> é oferecer um serviço de T.I.
+                    personalizado.
+                </p>
+                <p>
+                    Acreditamos que a tecnologia deve ser uma aliada, não uma
+                    complicação. Garantimos que sua infraestrutura funcione
+                    perfeitamente para que você possa focar no crescimento do
+                    seu negócio.
+                </p>
+            </div>
+            <div class="image-content" appFadeIn>
+                <div class="tech-card">
+                    <div
+                        class="code-decoration"
+                        style="
+                            height: 300px;
+                            background: rgba(255, 255, 255, 0.05);
+                            border-radius: 20px;
+                        "
+                    ></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<app-process></app-process>
+
+<section id="servicos" class="section bg-alt">
+    <div class="container">
+        <h3 class="section-title center">Especialidades</h3>
+        <h2 class="center">Soluções Completas</h2>
+
+        <div class="services-grid">
+            @for (service of services; track service.title) {
+                <div class="card" appFadeIn>
+                    <i [class]="service.icon"></i>
+                    <h4>{{ service.title }}</h4>
+                    <p>{{ service.desc }}</p>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<app-contact></app-contact>
+
+<app-whatsapp-btn></app-whatsapp-btn>
+
+<app-footer></app-footer>

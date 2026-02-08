@@ -1,0 +1,112 @@
+<section id="contato" class="contact-section">
+    <div class="container">
+        <div class="section-header">
+            <h3 class="subtitle">Fale Conosco</h3>
+            <h2>Vamos construir algo incrível?</h2>
+        </div>
+
+        <div class="contact-wrapper">
+            <div class="contact-info">
+                <h3>Canais de Atendimento</h3>
+                <p>
+                    Estamos prontos para analisar seu cenário e propor a melhor
+                    solução em T.I.
+                </p>
+
+                <div class="info-items">
+                    <div class="item">
+                        <div class="icon-box">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="details">
+                            <span>Email</span>
+                            <a href="mailto:suporteti@novarutra.com.br"
+                                >suporteti&#64;novarutra.com.br</a
+                            >
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="icon-box">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="details">
+                            <span>WhatsApp</span>
+                            <a
+                                href="https://wa.me/5511955501739"
+                                target="_blank"
+                                >Falar com Consultor</a
+                            >
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="icon-box">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="details">
+                            <span>Localização</span>
+                            <p>São Paulo - SP</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="decoration-circle"></div>
+            </div>
+
+            <form class="contact-form" (ngSubmit)="sendMessage()">
+                <div class="form-group">
+                    <label>Seu Nome</label>
+                    <input
+                        type="text"
+                        name="name"
+                        [(ngModel)]="formData.name"
+                        placeholder="Digite seu nome"
+                        required
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label>E-mail Corporativo</label>
+                    <input
+                        type="email"
+                        name="email"
+                        [(ngModel)]="formData.email"
+                        placeholder="exemplo@empresa.com"
+                        required
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label>Empresa (Opcional)</label>
+                    <input
+                        type="text"
+                        name="company"
+                        [(ngModel)]="formData.company"
+                        placeholder="Nome da sua empresa"
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label>Como podemos ajudar?</label>
+                    <textarea
+                        name="message"
+                        [(ngModel)]="formData.message"
+                        rows="4"
+                        placeholder="Descreva brevemente sua necessidade..."
+                        required
+                    ></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit" [disabled]="isSending">
+                    <span *ngIf="!isSending"
+                        >Enviar Mensagem <i class="fas fa-paper-plane"></i
+                    ></span>
+                    <span *ngIf="isSending"
+                        >Enviando... <i class="fas fa-spinner fa-spin"></i
+                    ></span>
+                </button>
+            </form>
+        </div>
+    </div>
+</section>

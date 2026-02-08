@@ -1,0 +1,76 @@
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-col brand-col">
+                <div class="logo">
+                    <img
+                        src="assets/LOGO_WHITE-WITHOUT_BACKGROUND.png"
+                        alt="NovaRutra Logo"
+                    />
+                    <span>NOVARUTRA</span>
+                </div>
+                <p class="desc">
+                    Transformando a tecnologia em aliada do seu negócio.
+                    Soluções completas em T.I., Desenvolvimento e
+                    Infraestrutura.
+                </p>
+                <div class="social-links">
+                    @for (social of socialLinks; track social.label) {
+                        <a
+                            [href]="social.url"
+                            target="_blank"
+                            [attr.aria-label]="social.label"
+                        >
+                            <i [class]="social.icon"></i>
+                        </a>
+                    }
+                </div>
+            </div>
+
+            <div class="footer-col links-col">
+                <h4>Navegação</h4>
+                <ul>
+                    @for (link of quickLinks; track link.name) {
+                        <li>
+                            <a [href]="link.href">
+                                <i class="fas fa-chevron-right"></i>
+                                {{ link.name }}
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+
+            <div class="footer-col contact-col">
+                <h4>Contato</h4>
+                <ul class="contact-info">
+                    <li>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>São Paulo - SP<br /><small>Zona Sul</small></span>
+                    </li>
+                    <li>
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:suporteti@novarutra.com.br"
+                            >suporteti&#64;novarutra.com.br</a
+                        >
+                    </li>
+                    <li>
+                        <i class="fas fa-phone-alt"></i>
+                        <span>Comercial e Suporte</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>
+                &copy; {{ currentYear }}
+                <strong>NovaRutra Informática Ltda</strong>. Todos os direitos
+                reservados.
+            </p>
+            <p class="credits">
+                Desenvolvido com <i class="fas fa-code"></i> e Inovação.
+            </p>
+        </div>
+    </div>
+</footer>

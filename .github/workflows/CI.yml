@@ -35,6 +35,7 @@ jobs:
                   name: dist
                   path: dist/novarutra_front/browser
                   retention-days: 1
+                  if-no-files-found: error
 
     deploy:
         name: Deploy to GitHub Pages

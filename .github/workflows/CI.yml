@@ -29,17 +29,17 @@ jobs:
               run: npm run build
 
             - name: Upload build artifact
-              if: github.ref == 'refs/heads/dev' && github.event_name == 'push'
+              if: github.ref == 'refs/heads/main' && github.event_name == 'push'
               uses: actions/upload-artifact@v4
               with:
                   name: dist
-                  path: dist/portfolio/browser
+                  path: dist/novarutra_front/browser
                   retention-days: 1
 
     deploy:
         name: Deploy to GitHub Pages
         needs: test-and-build
-        if: github.ref == 'refs/heads/dev' && github.event_name == 'push'
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         runs-on: ubuntu-latest
 
         permissions:

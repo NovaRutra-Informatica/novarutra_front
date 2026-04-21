@@ -1,19 +1,108 @@
-<section class="stats-section">
+<section class="stats-section" aria-label="Números da NovaRutra">
+    <!-- PCB circuit overlay -->
+    <svg
+        class="circuit-svg"
+        viewBox="0 0 1200 180"
+        preserveAspectRatio="xMidYMid slice"
+        aria-hidden="true"
+        focusable="false"
+    >
+        <!-- ── Static base traces ─────────────────────────────────── -->
+        <g class="traces-base">
+            <!-- Top rail -->
+            <path
+                d="M 0,42 H 90 V 22 H 310 V 42 H 590 V 22 H 610 V 42 H 890 V 22 H 1110 V 42 H 1200"
+            />
+            <!-- Bottom rail -->
+            <path
+                d="M 0,138 H 90 V 158 H 310 V 138 H 590 V 158 H 610 V 138 H 890 V 158 H 1110 V 138 H 1200"
+            />
+            <!-- Left column -->
+            <path d="M 90,22 V 0" />
+            <path d="M 90,158 V 180" />
+            <path d="M 90,42 V 138" />
+            <!-- Right column -->
+            <path d="M 1110,22 V 0" />
+            <path d="M 1110,158 V 180" />
+            <path d="M 1110,42 V 138" />
+            <!-- Mid verticals -->
+            <path d="M 310,22 V 0" />
+            <path d="M 310,158 V 180" />
+            <path d="M 610,22 V 0" />
+            <path d="M 610,158 V 180" />
+            <path d="M 890,22 V 0" />
+            <path d="M 890,158 V 180" />
+            <!-- Short branches -->
+            <path d="M 200,22 V 0" />
+            <path d="M 450,22 V 5 H 500 V 0" />
+            <path d="M 750,22 V 5 H 700 V 0" />
+            <path d="M 1000,22 V 0" />
+            <path d="M 200,158 V 175 H 250 V 180" />
+            <path d="M 730,158 V 175 H 780 V 180" />
+        </g>
+
+        <!-- ── Vias (connection dots) ────────────────────────────── -->
+        <g class="vias">
+            <circle cx="90" cy="42" r="4" />
+            <circle cx="90" cy="138" r="4" />
+            <circle cx="310" cy="42" r="4" />
+            <circle cx="310" cy="22" r="4" />
+            <circle cx="310" cy="138" r="4" />
+            <circle cx="590" cy="42" r="4" />
+            <circle cx="610" cy="42" r="4" />
+            <circle cx="610" cy="22" r="4" />
+            <circle cx="890" cy="42" r="4" />
+            <circle cx="890" cy="22" r="4" />
+            <circle cx="890" cy="138" r="4" />
+            <circle cx="1110" cy="42" r="4" />
+            <circle cx="1110" cy="138" r="4" />
+            <circle cx="200" cy="22" r="3" />
+            <circle cx="450" cy="22" r="3" />
+            <circle cx="750" cy="22" r="3" />
+            <circle cx="1000" cy="22" r="3" />
+            <circle cx="200" cy="158" r="3" />
+            <circle cx="730" cy="158" r="3" />
+        </g>
+
+        <!-- ── Animated light packets ────────────────────────────── -->
+        <!-- Packet 1: top rail L→R -->
+        <path
+            class="packet p1"
+            d="M 0,42 H 90 V 22 H 310 V 42 H 590 V 22 H 610 V 42 H 890 V 22 H 1110 V 42 H 1200"
+        />
+        <!-- Packet 2: bottom rail R→L -->
+        <path
+            class="packet p2"
+            d="M 1200,138 H 1110 V 158 H 890 V 138 H 610 V 158 H 590 V 138 H 310 V 158 H 90 V 138 H 0"
+        />
+        <!-- Packet 3: left column top→bottom -->
+        <path class="packet p3" d="M 90,0 V 22 H 90 V 42 V 138 V 158 V 180" />
+        <!-- Packet 4: right column bottom→top -->
+        <path class="packet p4" d="M 1110,180 V 158 V 138 V 42 V 22 V 0" />
+        <!-- Packet 5: mid vertical (stat 2 boundary) -->
+        <path class="packet p5" d="M 310,180 V 158 V 138 M 310,0 V 22 V 42" />
+        <!-- Packet 6: mid vertical (stat 3 boundary) -->
+        <path class="packet p6" d="M 890,0 V 22 V 42 M 890,180 V 158 V 138" />
+    </svg>
+
     <div class="container">
-        <div class="stats-grid">
+        <ul class="stats-grid" role="list">
             @for (stat of stats; track stat.label) {
-                <div class="stat-item">
+                <li class="stat-item">
                     <div
                         class="number"
                         [appCountUp]="stat.value"
                         [suffix]="stat.suffix"
                         [duration]="2500"
+                        aria-label="{{ stat.value }}{{ stat.suffix }} {{
+                            stat.label
+                        }}"
                     >
                         0
                     </div>
                     <p class="label">{{ stat.label }}</p>
-                </div>
+                </li>
             }
-        </div>
+        </ul>
     </div>
 </section>

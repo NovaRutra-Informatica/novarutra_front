@@ -1,0 +1,20 @@
+<div class="terminal" role="presentation" aria-label="Sobre Alessandro Lima">
+    <div class="terminal-bar" aria-hidden="true">
+        <span class="dot dot-red"></span>
+        <span class="dot dot-yellow"></span>
+        <span class="dot dot-green"></span>
+        <span class="bar-title">novarutra&#64;tech: ~/sobre</span>
+    </div>
+    <div class="terminal-body">
+        <p class="cmd-line" aria-hidden="true">
+            <span class="prompt">$</span>
+            <span class="cmd"> cat sobre-nos.txt</span>
+        </p>
+        <p class="output-text">
+            {{ displayedText()
+            }}<span class="cursor" aria-hidden="true" [class.hidden]="isDone()"
+                >▋</span
+            >
+        </p>
+    </div>
+</div>

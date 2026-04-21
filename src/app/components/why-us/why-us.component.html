@@ -1,0 +1,28 @@
+<section class="why-us-section">
+    <div class="container">
+        <header class="section-header" appFadeIn>
+            <h3 class="section-tag">Por que a NovaRutra?</h3>
+            <h2>Compromisso em cada atendimento</h2>
+        </header>
+
+        <ul class="why-list" role="list">
+            @for (item of items; track item.title; let i = $index) {
+                <li class="why-row" appFadeIn>
+                    <span class="row-number" aria-hidden="true">{{
+                        (i + 1).toString().padStart(2, '0')
+                    }}</span>
+                    <div class="row-icon" aria-hidden="true">
+                        <i [class]="item.icon"></i>
+                    </div>
+                    <div class="row-content">
+                        <h3>{{ item.title }}</h3>
+                        <p>{{ item.desc }}</p>
+                    </div>
+                    <span class="row-arrow" aria-hidden="true">
+                        <i class="fas fa-arrow-right"></i>
+                    </span>
+                </li>
+            }
+        </ul>
+    </div>
+</section>

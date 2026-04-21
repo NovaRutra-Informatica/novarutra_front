@@ -1,0 +1,60 @@
+<section id="servicos" class="services-section">
+    <div class="container">
+        <header class="section-header" appFadeIn>
+            <h3 class="section-tag">Especialidades</h3>
+            <h2>O que posso fazer por você</h2>
+            <p class="section-subtitle">
+                Soluções completas de T.I. para empresas e pessoas físicas, com
+                atendimento presencial em São Paulo.
+            </p>
+        </header>
+
+        <!-- Featured service -->
+        <article class="service-featured" appFadeIn>
+            <div class="featured-content">
+                <span class="feat-num" aria-hidden="true">01</span>
+                <div class="feat-icon" aria-hidden="true">
+                    <i class="fas fa-laptop"></i>
+                </div>
+                <h3>Manutenção de<br />Computadores</h3>
+                <p>
+                    Diagnóstico completo, limpeza, troca de componentes e
+                    upgrades para desktops e notebooks de todas as marcas. Do
+                    problema ao funcionamento, sem enrolação.
+                </p>
+                <ul class="feat-chips" aria-label="O que atendo">
+                    <li>Notebooks</li>
+                    <li>Desktops</li>
+                    <li>Todas as marcas</li>
+                    <li>Peças originais</li>
+                </ul>
+            </div>
+            <div class="featured-visual" aria-hidden="true">
+                <div class="orbit-wrapper">
+                    <span class="ring ring-1"></span>
+                    <span class="ring ring-2"></span>
+                    <span class="ring ring-3"></span>
+                    <div class="orbit-center">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Remaining services -->
+        <ul class="services-grid" role="list">
+            @for (service of services; track service.title; let i = $index) {
+                <li class="service-card" appFadeIn>
+                    <span class="card-num" aria-hidden="true">{{
+                        (i + 2).toString().padStart(2, '0')
+                    }}</span>
+                    <div class="card-icon" aria-hidden="true">
+                        <i [class]="service.icon"></i>
+                    </div>
+                    <h3>{{ service.title }}</h3>
+                    <p>{{ service.desc }}</p>
+                </li>
+            }
+        </ul>
+    </div>
+</section>

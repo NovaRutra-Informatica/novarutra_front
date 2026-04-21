@@ -1,13 +1,141 @@
 @use 'variables' as *;
 
 .stats-section {
+    position: relative;
     padding: 60px 0;
     background: $bg-card;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+
+    @media (max-width: $mobile) {
+        padding: 40px 0;
+    }
 }
 
+// ── Circuit SVG overlay ───────────────────────────────────────────────────────
+
+.circuit-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.traces-base {
+    path,
+    line {
+        stroke: rgba($primary-color, 0.12);
+        stroke-width: 1.5;
+        fill: none;
+        stroke-linecap: round;
+    }
+}
+
+.vias {
+    circle {
+        fill: rgba($primary-color, 0.25);
+        stroke: rgba($primary-color, 0.4);
+        stroke-width: 1;
+        animation: via-pulse 3s ease-in-out infinite;
+    }
+
+    circle:nth-child(2n) {
+        animation-delay: -1.5s;
+    }
+    circle:nth-child(3n) {
+        animation-delay: -0.8s;
+    }
+}
+
+@keyframes via-pulse {
+    0%,
+    100% {
+        opacity: 0.4;
+    }
+    50% {
+        opacity: 1;
+        filter: drop-shadow(0 0 4px rgba($primary-color, 0.8));
+    }
+}
+
+// ── Animated packets ──────────────────────────────────────────────────────────
+
+.packet {
+    fill: none;
+    stroke-linecap: round;
+
+    &.p1 {
+        stroke: rgba($primary-color, 0.9);
+        stroke-width: 2.5;
+        stroke-dasharray: 18 900;
+        filter: drop-shadow(0 0 4px rgba($primary-color, 0.8));
+        animation: flow-lr 5s linear infinite;
+    }
+
+    &.p2 {
+        stroke: rgba(0, 212, 255, 0.85);
+        stroke-width: 2.5;
+        stroke-dasharray: 18 900;
+        filter: drop-shadow(0 0 4px rgba(0, 212, 255, 0.7));
+        animation: flow-rl 6s linear infinite 1.2s;
+    }
+
+    &.p3 {
+        stroke: rgba($primary-color, 0.8);
+        stroke-width: 2;
+        stroke-dasharray: 12 400;
+        filter: drop-shadow(0 0 3px rgba($primary-color, 0.7));
+        animation: flow-lr 3.5s linear infinite 0.5s;
+    }
+
+    &.p4 {
+        stroke: rgba(0, 212, 255, 0.75);
+        stroke-width: 2;
+        stroke-dasharray: 12 400;
+        filter: drop-shadow(0 0 3px rgba(0, 212, 255, 0.6));
+        animation: flow-lr 4s linear infinite 2.5s;
+    }
+
+    &.p5 {
+        stroke: rgba($primary-color, 0.7);
+        stroke-width: 2;
+        stroke-dasharray: 10 300;
+        animation: flow-lr 3s linear infinite 0.8s;
+    }
+
+    &.p6 {
+        stroke: rgba(0, 212, 255, 0.7);
+        stroke-width: 2;
+        stroke-dasharray: 10 300;
+        animation: flow-lr 3.8s linear infinite 1.8s;
+    }
+}
+
+@keyframes flow-lr {
+    from {
+        stroke-dashoffset: 1000;
+    }
+    to {
+        stroke-dashoffset: -1000;
+    }
+}
+
+@keyframes flow-rl {
+    from {
+        stroke-dashoffset: -1000;
+    }
+    to {
+        stroke-dashoffset: 1000;
+    }
+}
+
+// ── Stats content ─────────────────────────────────────────────────────────────
+
 .container {
+    position: relative;
+    z-index: 1;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
@@ -18,10 +146,18 @@
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 40px;
     text-align: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .stat-item {
     padding: 20px;
+    transition: transform 0.3s;
+
+    &:hover {
+        transform: translateY(-5px);
+    }
 
     .number {
         font-size: 3.5rem;
@@ -29,19 +165,31 @@
         color: $primary-color;
         margin-bottom: 10px;
         font-family: 'Poppins', sans-serif;
-        text-shadow: 0 0 20px rgba($primary-color, 0.4);
+        text-shadow: 0 0 25px rgba($primary-color, 0.5);
+        animation: number-glow 4s ease-in-out infinite;
+
+        @media (max-width: $mobile) {
+            font-size: 2.8rem;
+        }
     }
 
     .label {
-        font-size: 1.1rem;
+        font-size: 0.95rem;
         color: $text-muted;
         text-transform: uppercase;
         letter-spacing: 1px;
         font-weight: 500;
     }
+}
 
-    transition: transform 0.3s;
-    &:hover {
-        transform: translateY(-5px);
+@keyframes number-glow {
+    0%,
+    100% {
+        text-shadow: 0 0 20px rgba($primary-color, 0.4);
+    }
+    50% {
+        text-shadow:
+            0 0 30px rgba($primary-color, 0.7),
+            0 0 60px rgba($primary-color, 0.2);
     }
 }

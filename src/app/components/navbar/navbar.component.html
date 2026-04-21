@@ -1,21 +1,29 @@
-<nav [class.scrolled]="isScrolled()">
+<nav [class.scrolled]="isScrolled()" aria-label="Navegação principal">
     <div class="container">
-        <div class="logo-area">
+        <a href="#inicio" class="logo-area" aria-label="NovaRutra — Início">
             <img
                 src="assets/LOGO_WHITE-WITHOUT_BACKGROUND.png"
-                alt="NovaRutra Logo"
+                alt="Logotipo NovaRutra"
                 class="logo-img"
+                width="45"
+                height="45"
             />
             <span class="logo-text">NOVARUTRA</span>
-        </div>
+        </a>
 
-        <div class="mobile-toggle" (click)="toggleMobileMenu()">
+        <button
+            class="mobile-toggle"
+            (click)="toggleMobileMenu()"
+            [attr.aria-expanded]="isMobileMenuOpen()"
+            aria-controls="main-menu"
+            aria-label="Abrir menu"
+        >
             <span [class.open]="isMobileMenuOpen()"></span>
             <span [class.open]="isMobileMenuOpen()"></span>
             <span [class.open]="isMobileMenuOpen()"></span>
-        </div>
+        </button>
 
-        <ul class="menu" [class.active]="isMobileMenuOpen()">
+        <ul id="main-menu" class="menu" [class.active]="isMobileMenuOpen()">
             <li><a href="#inicio" (click)="closeMenu()">Início</a></li>
             <li><a href="#sobre" (click)="closeMenu()">Sobre</a></li>
             <li><a href="#servicos" (click)="closeMenu()">Serviços</a></li>

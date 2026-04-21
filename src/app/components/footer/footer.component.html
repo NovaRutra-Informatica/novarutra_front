@@ -5,71 +5,82 @@
                 <div class="logo">
                     <img
                         src="assets/LOGO_WHITE-WITHOUT_BACKGROUND.png"
-                        alt="NovaRutra Logo"
+                        alt="Logotipo NovaRutra"
+                        width="40"
+                        height="40"
                     />
                     <span>NOVARUTRA</span>
                 </div>
                 <p class="desc">
-                    Transformando a tecnologia em aliada do seu negócio.
-                    Soluções completas em T.I., Desenvolvimento e
-                    Infraestrutura.
+                    Manutenção especializada em computadores e servidores.
+                    Atendimento presencial em São Paulo.
                 </p>
-                <div class="social-links">
+                <div class="social-links" aria-label="Redes sociais">
                     @for (social of socialLinks; track social.label) {
                         <a
                             [href]="social.url"
                             target="_blank"
+                            rel="noopener noreferrer"
                             [attr.aria-label]="social.label"
                         >
-                            <i [class]="social.icon"></i>
+                            <i [class]="social.icon" aria-hidden="true"></i>
                         </a>
                     }
                 </div>
             </div>
 
-            <div class="footer-col links-col">
+            <nav class="footer-col links-col" aria-label="Navegação do rodapé">
                 <h4>Navegação</h4>
                 <ul>
                     @for (link of quickLinks; track link.name) {
                         <li>
                             <a [href]="link.href">
-                                <i class="fas fa-chevron-right"></i>
+                                <i
+                                    class="fas fa-chevron-right"
+                                    aria-hidden="true"
+                                ></i>
                                 {{ link.name }}
                             </a>
                         </li>
                     }
                 </ul>
-            </div>
+            </nav>
 
-            <div class="footer-col contact-col">
+            <address class="footer-col contact-col">
                 <h4>Contato</h4>
                 <ul class="contact-info">
                     <li>
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>São Paulo - SP<br /><small>Zona Sul</small></span>
+                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                        <span>São Paulo — SP, Capital</span>
                     </li>
                     <li>
-                        <i class="fas fa-envelope"></i>
+                        <i class="fas fa-envelope" aria-hidden="true"></i>
                         <a href="mailto:suporteti@novarutra.com.br"
                             >suporteti&#64;novarutra.com.br</a
                         >
                     </li>
                     <li>
-                        <i class="fas fa-phone-alt"></i>
-                        <span>Comercial e Suporte</span>
+                        <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                        <a
+                            href="https://wa.me/5511955501739"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            >(11) 9 5550-1739</a
+                        >
                     </li>
                 </ul>
-            </div>
+            </address>
         </div>
 
         <div class="footer-bottom">
             <p>
-                &copy; {{ currentYear }}
-                <strong>NovaRutra Informática Ltda</strong>. Todos os direitos
-                reservados.
+                &copy; {{ currentYear }} <strong>NovaRutra Informática</strong>.
+                Todos os direitos reservados.
             </p>
             <p class="credits">
-                Desenvolvido com <i class="fas fa-code"></i> e Inovação.
+                Desenvolvido com
+                <i class="fas fa-heart" aria-hidden="true"></i>
+                em São Paulo.
             </p>
         </div>
     </div>

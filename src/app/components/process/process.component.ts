@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FadeInDirective } from '../../directives/fade-in.directive';
 
 @Component({
     selector: 'app-process',
     standalone: true,
-    imports: [CommonModule],
+    imports: [CommonModule, FadeInDirective],
     templateUrl: './process.component.html',
     styleUrls: ['./process.component.scss'],
 })
@@ -13,26 +14,26 @@ export class ProcessComponent {
         {
             number: '01',
             title: 'Diagnóstico',
-            desc: 'Entendemos a fundo a necessidade e os gargalos da sua empresa.',
-            icon: 'fas fa-search-dollar',
+            desc: 'Análise completa do equipamento para identificar o problema com precisão e transparência.',
+            icon: 'fas fa-stethoscope',
         },
         {
             number: '02',
-            title: 'Estratégia',
-            desc: 'Planejamos a solução ideal, seja infraestrutura, site ou app.',
-            icon: 'fas fa-chess-knight',
+            title: 'Orçamento',
+            desc: 'Receba o valor detalhado antes de qualquer serviço. Sem surpresas, sem letras miúdas.',
+            icon: 'fas fa-file-invoice',
         },
         {
             number: '03',
-            title: 'Execução',
-            desc: 'Nossos especialistas implementam a solução com agilidade e técnica.',
-            icon: 'fas fa-code',
+            title: 'Reparo',
+            desc: 'Execução com peças de qualidade, técnica especializada e prazo acordado.',
+            icon: 'fas fa-tools',
         },
         {
             number: '04',
-            title: 'Suporte',
-            desc: 'Monitoramos e damos suporte contínuo para garantir estabilidade.',
-            icon: 'fas fa-sync-alt',
+            title: 'Garantia',
+            desc: 'Entrega com garantia de serviço. Problema voltou? Retorno sem custo adicional.',
+            icon: 'fas fa-award',
         },
     ];
 }

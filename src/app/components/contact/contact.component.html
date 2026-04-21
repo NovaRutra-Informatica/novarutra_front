@@ -1,33 +1,33 @@
 <section id="contato" class="contact-section">
     <div class="container">
-        <div class="section-header">
+        <header class="section-header">
             <h3 class="subtitle">Fale Conosco</h3>
-            <h2>Vamos construir algo incrível?</h2>
-        </div>
+            <h2>Fale diretamente comigo</h2>
+        </header>
 
         <div class="contact-wrapper">
-            <div class="contact-info">
+            <aside class="contact-info" aria-label="Canais de atendimento">
                 <h3>Canais de Atendimento</h3>
                 <p>
-                    Estamos prontos para analisar seu cenário e propor a melhor
-                    solução em T.I.
+                    Entre em contato pelo canal de sua preferência ou preencha o
+                    formulário ao lado.
                 </p>
 
-                <div class="info-items">
-                    <div class="item">
-                        <div class="icon-box">
+                <ul class="info-items" role="list">
+                    <li class="item">
+                        <div class="icon-box" aria-hidden="true">
                             <i class="fas fa-envelope"></i>
                         </div>
                         <div class="details">
-                            <span>Email</span>
+                            <span>E-mail</span>
                             <a href="mailto:suporteti@novarutra.com.br"
                                 >suporteti&#64;novarutra.com.br</a
                             >
                         </div>
-                    </div>
+                    </li>
 
-                    <div class="item">
-                        <div class="icon-box">
+                    <li class="item">
+                        <div class="icon-box" aria-hidden="true">
                             <i class="fab fa-whatsapp"></i>
                         </div>
                         <div class="details">
@@ -35,78 +35,115 @@
                             <a
                                 href="https://wa.me/5511955501739"
                                 target="_blank"
-                                >Falar com Consultor</a
+                                rel="noopener noreferrer"
+                                >Chamar no WhatsApp</a
                             >
                         </div>
-                    </div>
+                    </li>
 
-                    <div class="item">
-                        <div class="icon-box">
+                    <li class="item">
+                        <div class="icon-box" aria-hidden="true">
                             <i class="fas fa-map-marker-alt"></i>
                         </div>
                         <div class="details">
                             <span>Localização</span>
-                            <p>São Paulo - SP</p>
+                            <address>São Paulo — SP, Capital</address>
                         </div>
+                    </li>
+                </ul>
+
+                <div class="decoration-circle" aria-hidden="true"></div>
+            </aside>
+
+            @if (isSent) {
+                <div class="success-message" role="status" aria-live="polite">
+                    <i class="fas fa-check-circle" aria-hidden="true"></i>
+                    <div>
+                        <h4>Mensagem enviada!</h4>
+                        <p>
+                            Retornarei em breve pelo e-mail ou WhatsApp
+                            informado.
+                        </p>
                     </div>
                 </div>
+            } @else {
+                <form
+                    class="contact-form"
+                    (ngSubmit)="sendMessage()"
+                    novalidate
+                >
+                    <div class="form-group">
+                        <label for="contact-name">Seu Nome</label>
+                        <input
+                            id="contact-name"
+                            type="text"
+                            name="name"
+                            [(ngModel)]="formData.name"
+                            placeholder="Digite seu nome"
+                            required
+                            autocomplete="name"
+                        />
+                    </div>
 
-                <div class="decoration-circle"></div>
-            </div>
+                    <div class="form-group">
+                        <label for="contact-email">E-mail</label>
+                        <input
+                            id="contact-email"
+                            type="email"
+                            name="email"
+                            [(ngModel)]="formData.email"
+                            placeholder="exemplo@empresa.com"
+                            required
+                            autocomplete="email"
+                        />
+                    </div>
 
-            <form class="contact-form" (ngSubmit)="sendMessage()">
-                <div class="form-group">
-                    <label>Seu Nome</label>
-                    <input
-                        type="text"
-                        name="name"
-                        [(ngModel)]="formData.name"
-                        placeholder="Digite seu nome"
-                        required
-                    />
-                </div>
+                    <div class="form-group">
+                        <label for="contact-company">Empresa (Opcional)</label>
+                        <input
+                            id="contact-company"
+                            type="text"
+                            name="company"
+                            [(ngModel)]="formData.company"
+                            placeholder="Nome da sua empresa"
+                            autocomplete="organization"
+                        />
+                    </div>
 
-                <div class="form-group">
-                    <label>E-mail Corporativo</label>
-                    <input
-                        type="email"
-                        name="email"
-                        [(ngModel)]="formData.email"
-                        placeholder="exemplo@empresa.com"
-                        required
-                    />
-                </div>
+                    <div class="form-group">
+                        <label for="contact-message">Como posso ajudar?</label>
+                        <textarea
+                            id="contact-message"
+                            name="message"
+                            [(ngModel)]="formData.message"
+                            rows="4"
+                            placeholder="Descreva brevemente o problema ou necessidade..."
+                            required
+                        ></textarea>
+                    </div>
 
-                <div class="form-group">
-                    <label>Empresa (Opcional)</label>
-                    <input
-                        type="text"
-                        name="company"
-                        [(ngModel)]="formData.company"
-                        placeholder="Nome da sua empresa"
-                    />
-                </div>
-
-                <div class="form-group">
-                    <label>Como podemos ajudar?</label>
-                    <textarea
-                        name="message"
-                        [(ngModel)]="formData.message"
-                        rows="4"
-                        placeholder="Descreva brevemente sua necessidade..."
-                        required
-                    ></textarea>
-                </div>
-
-                <button type="submit" class="btn-submit" [disabled]="isSending">
-                    <span *ngIf="!isSending"
-                        >Enviar Mensagem <i class="fas fa-paper-plane"></i
-                    ></span>
-                    <span *ngIf="isSending"
-                        >Enviando... <i class="fas fa-spinner fa-spin"></i
-                    ></span>
-                </button>
-            </form>
+                    <button
+                        type="submit"
+                        class="btn-submit"
+                        [disabled]="isSending"
+                        [attr.aria-busy]="isSending"
+                    >
+                        @if (isSending) {
+                            <i
+                                class="fas fa-spinner fa-spin"
+                                aria-hidden="true"
+                            ></i>
+                            Enviando...
+                        } @else {
+                            Enviar Mensagem
+                            <i
+                                class="fas fa-paper-plane"
+                                aria-hidden="true"
+                            ></i>
+                        }
+                    </button>
+                </form>
+            }
         </div>
     </div>
 </section>

@@ -1,15 +1,15 @@
-<section class="partners-section">
+<section id="clientes" class="partners-section" aria-label="Clientes">
     <div class="container">
         <h3 class="section-label">Empresas que confiam na NovaRutra</h3>
 
-        <div class="slider">
+        <div class="slider" aria-hidden="true">
             <div class="slide-track">
                 @for (partner of partners; track $index) {
                     <div class="slide">
                         <img
                             [src]="partner.logo"
                             [alt]="partner.name"
-                            title="{{ partner.name }}"
+                            loading="lazy"
                         />
                     </div>
                 }

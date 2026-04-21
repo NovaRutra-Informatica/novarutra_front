@@ -4,26 +4,29 @@
         <meta charset="UTF-8" />
         <link rel="icon" type="image/x-icon" href="/LOGO_WHITE.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link
-            rel="stylesheet"
-            href="assets/fonts/fontawesome/css/all.min.css"
-        />
         <title>NovaRutra Informática</title>
+        <!-- Fallback CSP for static hosting. The Express server sets the
+             authoritative header. Add email provider origins to connect-src
+             in both places when integrating the contact form. -->
         <meta
             http-equiv="Content-Security-Policy"
             content="
-                      default-src 'self';
-                      script-src 'self';
-                      style-src 'self' 'unsafe-inline';
-                      img-src 'self' data:;
-                      font-src 'self';
-                      connect-src 'self' http://localhost:4000/ http://localhost:4200/ https://novarutra.com.br ;
-                      frame-src 'none';
-                      object-src 'none';
+                default-src 'self';
+                script-src 'self';
+                style-src 'self' 'unsafe-inline';
+                img-src 'self' data:;
+                font-src 'self';
+                connect-src 'self' https://novarutra.com.br;
+                frame-src 'none';
+                object-src 'none';
+                base-uri 'self';
+                form-action 'self';
+                worker-src 'none';
+                manifest-src 'self';
             "
         />
         <style>
-            {
+            .noscript-overlay {
                 position: fixed;
                 top: 0;
                 left: 0;

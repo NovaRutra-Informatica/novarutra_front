@@ -1,25 +1,69 @@
-name: CI
+name: Github Actions CI/CD Pipeline
 
 on:
     push:
     pull_request:
 
 jobs:
-    build-check:
+    test-and-build:
+        name: Test and build
         runs-on: ubuntu-latest
 
         steps:
-            - name: Checkout do código
-              uses: actions/checkout@v3
+            - name: Checkout code
+              uses: actions/checkout@v4
 
-            - name: Configurar Node.js
-              uses: actions/setup-node@v3
+            - name: Set up Node.js
+              uses: actions/setup-node@v4
               with:
                   node-version: '22.17.0'
                   cache: 'npm'
 
-            - name: Instalar dependências
+            - name: Install dependencies
               run: npm ci
 
-            - name: Testar Build
+            - name: Run unit tests
+              run: npm test
+
+            - name: Build
               run: npm run build
+
+            - name: Upload build artifact
+              if: github.ref == 'refs/heads/dev' && github.event_name == 'push'
+              uses: actions/upload-artifact@v4
+              with:
+                  name: dist
+                  path: dist/portfolio/browser
+                  retention-days: 1
+
+    deploy:
+        name: Deploy to GitHub Pages
+        needs: test-and-build
+        if: github.ref == 'refs/heads/dev' && github.event_name == 'push'
+        runs-on: ubuntu-latest
+
+        permissions:
+            contents: write
+            pull-requests: read
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Download build artifact
+              uses: actions/download-artifact@v4
+              with:
+                  name: dist
+                  path: ./dist/novarutra_front/browser
+
+            - name: Verify artifact
+              run: ls -la ./dist/novarutra_front/browser
+
+            - name: Create CNAME file
+              run: echo "novarutra.com.br" > ./dist/novarutra_front/browser/CNAME
+
+            - name: Deploy to GitHub Pages
+              uses: peaceiris/actions-gh-pages@v4
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  publish_dir: ./dist/novarutra_front/browser

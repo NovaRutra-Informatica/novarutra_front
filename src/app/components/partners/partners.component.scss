@@ -36,6 +36,10 @@
         position: absolute;
         width: 150px;
         z-index: 2;
+
+        @media (max-width: $mobile) {
+            width: 60px;
+        }
     }
     &::before {
         left: 0;
@@ -48,9 +52,7 @@
 
 .slide-track {
     display: flex;
-    width: calc(
-        250px * 10
-    );
+    width: calc(250px * 10);
     animation: scroll 30s linear infinite;
 
     &:hover {

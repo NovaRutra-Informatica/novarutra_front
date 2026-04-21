@@ -10,14 +10,9 @@ import { FormsModule } from '@angular/forms';
     styleUrls: ['./contact.component.scss'],
 })
 export class ContactComponent {
-    formData = {
-        name: '',
-        email: '',
-        company: '',
-        message: '',
-    };
-
+    formData = { name: '', email: '', company: '', message: '' };
     isSending = false;
+    isSent = false;
 
     sendMessage() {
         this.isSending = true;
@@ -25,9 +20,7 @@ export class ContactComponent {
         // TODO: Integrar com serviço de e-mail
         setTimeout(() => {
             this.isSending = false;
-            alert(
-                'Mensagem enviada com sucesso! Entraremos em contato em breve.',
-            );
+            this.isSent = true;
             this.formData = { name: '', email: '', company: '', message: '' };
         }, 2000);
     }

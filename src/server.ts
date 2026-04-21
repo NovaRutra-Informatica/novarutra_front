@@ -8,25 +8,50 @@ import express from 'express';
 import { join } from 'node:path';
 
 const browserDistFolder = join(import.meta.dirname, '../browser');
+const isDev = process.env['NODE_ENV'] !== 'production';
 
 const app = express();
 const angularApp = new AngularNodeAppEngine();
 
-/**
- * Example Express Rest API endpoints can be defined here.
- * Uncomment and define endpoints as necessary.
- *
- * Example:
- * ```ts
- * app.get('/api/{*splat}', (req, res) => {
- *   // Handle API request
- * });
- * ```
- */
+// ── Security headers ──────────────────────────────────────────────────────────
+app.use((_req, res, next) => {
+    const devOrigins = isDev
+        ? ' http://localhost:4000 http://localhost:4200'
+        : '';
 
-/**
- * Serve static files from /browser
- */
+    // Only this domain's assets + the email service when integrated.
+    // To add an email provider (e.g. EmailJS, Resend), append its API origin
+    // to connect-src below, e.g.: https://api.emailjs.com
+    res.setHeader(
+        'Content-Security-Policy',
+        [
+            "default-src 'self'",
+            "script-src 'self'",
+            "style-src 'self' 'unsafe-inline'",
+            "img-src 'self' data:",
+            "font-src 'self'",
+            `connect-src 'self' https://novarutra.com.br${devOrigins}`,
+            "frame-src 'none'",
+            "object-src 'none'",
+            "base-uri 'self'",
+            "form-action 'self'",
+            "worker-src 'none'",
+            "manifest-src 'self'",
+        ].join('; '),
+    );
+
+    res.setHeader('X-Content-Type-Options', 'nosniff');
+    res.setHeader('X-Frame-Options', 'DENY');
+    res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+    res.setHeader(
+        'Permissions-Policy',
+        'camera=(), microphone=(), geolocation=(), interest-cohort=()',
+    );
+
+    next();
+});
+
+// ── Static files ──────────────────────────────────────────────────────────────
 app.use(
     express.static(browserDistFolder, {
         maxAge: '1y',
@@ -35,9 +60,7 @@ app.use(
     }),
 );
 
-/**
- * Handle all other requests by rendering the Angular application.
- */
+// ── Angular SSR ───────────────────────────────────────────────────────────────
 app.use((req, res, next) => {
     angularApp
         .handle(req)
@@ -47,24 +70,16 @@ app.use((req, res, next) => {
         .catch(next);
 });
 
-/**
- * Start the server if this module is the main entry point, or it is ran via PM2.
- * The server listens on the port defined by the `PORT` environment variable, or defaults to 4000.
- */
 if (isMainModule(import.meta.url) || process.env['pm_id']) {
     const port = process.env['PORT'] || 4000;
     app.listen(port, (error) => {
         if (error) {
             throw error;
         }
-
         console.log(
             `Node Express server listening on http://localhost:${port}`,
         );
     });
 }
 
-/**
- * Request handler used by the Angular CLI (for dev-server and during build) or Firebase Cloud Functions.
- */
 export const reqHandler = createNodeRequestHandler(app);

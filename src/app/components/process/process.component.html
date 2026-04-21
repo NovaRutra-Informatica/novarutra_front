@@ -1,22 +1,33 @@
 <section class="process-section" id="como-trabalhamos">
     <div class="container">
-        <div class="header">
-            <h3 class="subtitle">Nosso Método</h3>
-            <h2>Como transformamos seu negócio</h2>
-        </div>
+        <header class="section-header">
+            <h3 class="section-tag">Nosso Método</h3>
+            <h2>Como funciona o atendimento</h2>
+        </header>
 
-        <div class="steps-container">
-            @for (step of steps; track step.number) {
-                <div class="step-card">
-                    <div class="icon-box">
-                        <i [class]="step.icon"></i>
-                        <span class="step-number">{{ step.number }}</span>
-                    </div>
-                    <h3>{{ step.title }}</h3>
-                    <p>{{ step.desc }}</p>
-                    <div class="connector"></div>
-                </div>
+        <ol class="timeline" aria-label="Etapas do atendimento">
+            @for (step of steps; track step.number; let i = $index) {
+                <li
+                    class="timeline-item"
+                    [class.item-left]="i % 2 === 0"
+                    [class.item-right]="i % 2 !== 0"
+                >
+                    <article class="step-card" appFadeIn>
+                        <header class="step-header">
+                            <div class="step-icon" aria-hidden="true">
+                                <i [class]="step.icon"></i>
+                            </div>
+                            <span
+                                class="step-num"
+                                aria-label="Etapa {{ step.number }}"
+                                >{{ step.number }}</span
+                            >
+                        </header>
+                        <h3>{{ step.title }}</h3>
+                        <p>{{ step.desc }}</p>
+                    </article>
+                </li>
             }
-        </div>
+        </ol>
     </div>
 </section>

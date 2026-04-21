@@ -1,0 +1,5 @@
+{
+    "permissions": {
+        "allow": ["PowerShell(npm view *)", "Bash(npx ng *)"]
+    }
+}

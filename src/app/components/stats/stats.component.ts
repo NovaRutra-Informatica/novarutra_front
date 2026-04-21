@@ -11,8 +11,8 @@ import { CountUpDirective } from '../../directives/count-up.directive';
 })
 export class StatsComponent {
     stats = [
-        { label: 'Projetos Entregues', value: 50, suffix: '+' },
-        { label: 'Anos de Mercado', value: 2, suffix: '+' },
+        { label: 'Equipamentos Reparados', value: 150, suffix: '+' },
+        { label: 'Clientes Atendidos', value: 70, suffix: '+' },
         { label: 'Satisfação', value: 100, suffix: '%' },
         { label: 'Suporte', value: 24, suffix: '/7' },
     ];

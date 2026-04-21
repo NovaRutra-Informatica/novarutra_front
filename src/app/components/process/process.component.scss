@@ -1,108 +1,213 @@
 @use 'variables' as *;
+@use 'sass:color';
+
+$gutter: 40px;
+$dot-size: 18px;
 
 .process-section {
-    padding: 100px 20px;
+    padding: 110px 20px;
     background-color: $bg-dark;
+
+    @media (max-width: $mobile) {
+        padding: 70px 20px;
+    }
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1100px;
     margin: 0 auto;
 }
 
-.header {
+.section-header {
     text-align: center;
     margin-bottom: 80px;
 
-    .subtitle {
-        color: $primary-color;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        font-size: 0.9rem;
-        margin-bottom: 10px;
-    }
-
-    h2 {
-        font-size: 2.5rem;
-        color: $text-main;
+    @media (max-width: $mobile) {
+        margin-bottom: 50px;
     }
 }
 
-.steps-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
+.section-tag {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: $primary-color;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 14px;
+}
 
-    @media (max-width: 900px) {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 50px;
+h2 {
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 800;
+    color: $text-main;
+}
+
+// ── Timeline ─────────────────────────────────────────────────────────────────
+
+.timeline {
+    position: relative;
+    list-style: none;
+    padding: 10px 0 0;
+    margin: 0;
+
+    // Vertical center line
+    &::before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        transform: translateX(-50%);
+        width: 2px;
+        background: linear-gradient(
+            to bottom,
+            transparent,
+            rgba($primary-color, 0.5) 8%,
+            rgba($primary-color, 0.3) 92%,
+            transparent
+        );
     }
-    @media (max-width: 600px) {
-        grid-template-columns: 1fr;
+
+    @media (max-width: $mobile) {
+        &::before {
+            left: 22px;
+        }
     }
 }
+
+.timeline-item {
+    position: relative;
+    width: calc(50% - #{$gutter});
+    margin-bottom: 55px;
+
+    // Dot on the center line
+    &::after {
+        content: '';
+        position: absolute;
+        top: 32px;
+        width: $dot-size;
+        height: $dot-size;
+        border-radius: 50%;
+        background: $primary-color;
+        box-shadow:
+            0 0 0 5px rgba($primary-color, 0.15),
+            0 0 14px rgba($primary-color, 0.5);
+        z-index: 1;
+        animation: dot-pulse 2.5s ease-in-out infinite;
+    }
+
+    &.item-left {
+        margin-right: auto;
+
+        &::after {
+            right: -($gutter + $dot-size * 0.5);
+        }
+    }
+
+    &.item-right {
+        margin-left: calc(50% + #{$gutter});
+
+        &::after {
+            left: -($gutter + $dot-size * 0.5);
+        }
+    }
+
+    // Mobile: single column with line on the left
+    @media (max-width: $mobile) {
+        width: calc(100% - 55px);
+        margin-left: 55px !important;
+        margin-right: 0 !important;
+
+        &::after {
+            left: -41px !important;
+            right: auto !important;
+        }
+    }
+}
+
+// ── Step card ─────────────────────────────────────────────────────────────────
 
 .step-card {
-    position: relative;
-    padding: 30px;
-    background: rgba(255, 255, 255, 0.02);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
     border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    transition: all 0.3s;
-    text-align: center;
+    padding: 36px 32px;
+    transition:
+        transform 0.3s,
+        border-color 0.3s,
+        box-shadow 0.3s;
 
     &:hover {
-        background: rgba(255, 255, 255, 0.05);
-        transform: translateY(-10px);
-        border-color: $primary-color;
+        transform: translateY(-6px);
+        border-color: rgba($primary-color, 0.4);
+        box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.4);
 
-        .icon-box i {
-            color: $primary-color;
-            transform: scale(1.1);
-        }
-    }
-
-    .icon-box {
-        position: relative;
-        width: 80px;
-        height: 80px;
-        margin: 0 auto 25px;
-        background: rgba($primary-color, 0.1);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        i {
-            font-size: 2rem;
-            color: $text-main;
-            transition: all 0.3s;
-        }
-
-        .step-number {
-            position: absolute;
-            top: -5px;
-            right: -5px;
+        .step-icon {
             background: $primary-color;
-            color: white;
-            font-size: 0.8rem;
-            font-weight: bold;
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            i {
+                color: #fff;
+            }
         }
     }
 
     h3 {
-        margin-bottom: 15px;
+        font-size: 1.2rem;
+        font-weight: 700;
         color: $text-main;
+        margin-bottom: 10px;
     }
+
     p {
+        font-size: 0.93rem;
         color: $text-muted;
-        font-size: 0.95rem;
-        line-height: 1.6;
+        line-height: 1.65;
+    }
+}
+
+.step-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.step-icon {
+    width: 54px;
+    height: 54px;
+    border-radius: 14px;
+    background: rgba($primary-color, 0.12);
+    border: 1px solid rgba($primary-color, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.3s;
+
+    i {
+        font-size: 1.25rem;
+        color: $primary-color;
+        transition: color 0.3s;
+    }
+}
+
+.step-num {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: rgba($primary-color, 0.2);
+    line-height: 1;
+    user-select: none;
+}
+
+@keyframes dot-pulse {
+    0%,
+    100% {
+        box-shadow:
+            0 0 0 5px rgba($primary-color, 0.15),
+            0 0 14px rgba($primary-color, 0.4);
+    }
+    50% {
+        box-shadow:
+            0 0 0 9px rgba($primary-color, 0.12),
+            0 0 28px rgba($primary-color, 0.7);
     }
 }

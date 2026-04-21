@@ -1,23 +1,29 @@
 <!doctype html>
 <html lang="pt-br" data-beasties-container="">
-    <head id="link-by-user-theme"><base href="/">
+    <head id="link-by-user-theme">
         <meta charset="UTF-8">
         <link rel="icon" type="image/x-icon" href="/LOGO_WHITE.png">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="assets/fonts/fontawesome/css/all.min.css">
         <title>NovaRutra Informática</title>
+        <!-- Fallback CSP for static hosting. The Express server sets the
+             authoritative header. Add email provider origins to connect-src
+             in both places when integrating the contact form. -->
         <meta http-equiv="Content-Security-Policy" content="
-                      default-src 'self';
-                      script-src 'self';
-                      style-src 'self' 'unsafe-inline';
-                      img-src 'self' data:;
-                      font-src 'self';
-                      connect-src 'self' http://localhost:4000/ http://localhost:4200/ https://novarutra.com.br ;
-                      frame-src 'none';
-                      object-src 'none';
+                default-src 'self';
+                script-src 'self';
+                style-src 'self' 'unsafe-inline';
+                img-src 'self' data:;
+                font-src 'self';
+                connect-src 'self' https://novarutra.com.br;
+                frame-src 'none';
+                object-src 'none';
+                base-uri 'self';
+                form-action 'self';
+                worker-src 'none';
+                manifest-src 'self';
             ">
         <style>
-            {
+            .noscript-overlay {
                 position: fixed;
                 top: 0;
                 left: 0;
@@ -45,7 +51,7 @@
                 line-height: 1.6;
             }
         </style>
-    <style>:root{--primary-color:#007bff;--primary-glow:#007bff80;--bg-dark:#0a0a0a;--bg-card:#141414;--text-main:#ffffff;--text-muted:#a0a0a0;--font-main:"Poppins", sans-serif;--glass-bg:rgba(20, 20, 20, .7);--glass-border:1px solid rgba(255, 255, 255, .1)}*{margin:0;padding:0;box-sizing:border-box}body{font-family:var(--font-main),serif;background-color:var(--bg-dark);color:var(--text-main);overflow-x:hidden;line-height:1.6}</style><link rel="stylesheet" href="styles-II7X7YEP.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles-II7X7YEP.css"></noscript></head>
+    <style>:root{--primary-color:#007bff;--primary-glow:#007bff80;--bg-dark:#0a0a0a;--bg-card:#141414;--text-main:#ffffff;--text-muted:#a0a0a0;--font-main:"Poppins", sans-serif;--glass-bg:rgba(20, 20, 20, .7);--glass-border:1px solid rgba(255, 255, 255, .1)}*{margin:0;padding:0;box-sizing:border-box}body{font-family:var(--font-main),serif;background-color:var(--bg-dark);color:var(--text-main);overflow-x:hidden;line-height:1.6}:root{--fa-family-brands:"Font Awesome 7 Brands";--fa-font-brands:normal 400 1em/1 var(--fa-family-brands)}:root{--fa-font-regular:normal 400 1em/1 var(--fa-family-classic)}:root{--fa-family-classic:"Font Awesome 7 Free";--fa-font-solid:normal 900 1em/1 var(--fa-family-classic);--fa-style-family-classic:var(--fa-family-classic)}</style><link rel="stylesheet" href="styles-ZYSZ6NHL.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles-ZYSZ6NHL.css"></noscript></head>
 
     <body ngcm="">
         <app-root></app-root>
@@ -62,5 +68,5 @@
                 </div>
             </div>
         </noscript>
-    <script src="main-OW334PDR.js" type="module"></script></body>
+    <script src="main-DPTMNIKL.js" type="module"></script></body>
 </html>

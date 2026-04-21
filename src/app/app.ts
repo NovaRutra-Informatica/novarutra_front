@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { SeoService } from './services/seo.service';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HeroComponent } from './components/hero/hero.component';
 import { PartnersComponent } from './components/partners/partners.component';
@@ -32,4 +33,8 @@ import { CtaComponent } from './components/cta/cta.component';
     templateUrl: './app.html',
     styleUrl: './app.scss',
 })
-export class AppComponent {}
+export class AppComponent {
+    constructor() {
+        inject(SeoService).init();
+    }
+}

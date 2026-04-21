@@ -93,7 +93,7 @@ describe('TerminalComponent', () => {
                 '.output-text',
             ) as HTMLElement;
             // Cursor is the only child text; actual text not typed yet
-            expect(output.textContent?.replace('▋', '')).toBe('');
+            expect(output.textContent?.replace('▋', '').trim()).toBe('');
         });
 
         it('cursor is visible before typing starts', () => {

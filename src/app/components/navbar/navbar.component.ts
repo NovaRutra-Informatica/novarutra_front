@@ -5,12 +5,11 @@ import {
     PLATFORM_ID,
     signal,
 } from '@angular/core';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
     selector: 'app-navbar',
     standalone: true,
-    imports: [CommonModule],
     templateUrl: './navbar.component.html',
     styleUrls: ['./navbar.component.scss'],
 })

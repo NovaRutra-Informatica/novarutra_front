@@ -1,10 +1,10 @@
 import {
+    afterNextRender,
     Directive,
     ElementRef,
-    OnInit,
-    Renderer2,
-    Inject,
+    inject,
     PLATFORM_ID,
+    Renderer2,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
@@ -12,19 +12,24 @@ import { isPlatformBrowser } from '@angular/common';
     selector: '[appFadeIn]',
     standalone: true,
 })
-export class FadeInDirective implements OnInit {
-    constructor(
-        private el: ElementRef,
-        private renderer: Renderer2,
-        @Inject(PLATFORM_ID) private platformId: Object,
-    ) {}
+export class FadeInDirective {
+    private readonly el = inject(ElementRef<HTMLElement>);
+    private readonly renderer = inject(Renderer2);
+    private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 
-    ngOnInit() {
-        if (isPlatformBrowser(this.platformId)) {
+    constructor() {
+        if (!this.isBrowser) return;
+
+        // afterNextRender runs after the first browser render commit, so
+        // reading layout (what IntersectionObserver.observe() does internally)
+        // happens outside the hydration path and does not force an early
+        // layout recalculation.
+        afterNextRender(() => {
             this.renderer.addClass(this.el.nativeElement, 'fade-in-up');
+
             const observer = new IntersectionObserver(
                 (entries) => {
-                    entries.forEach((entry) => {
+                    for (const entry of entries) {
                         if (entry.isIntersecting) {
                             this.renderer.addClass(
                                 this.el.nativeElement,
@@ -32,12 +37,12 @@ export class FadeInDirective implements OnInit {
                             );
                             observer.unobserve(this.el.nativeElement);
                         }
-                    });
+                    }
                 },
                 { threshold: 0.1 },
             );
 
             observer.observe(this.el.nativeElement);
-        }
+        });
     }
 }

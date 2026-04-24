@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { FadeInDirective } from '../../directives/fade-in.directive';
 import { TerminalComponent } from '../terminal/terminal.component';
 
 @Component({
     selector: 'app-about',
     standalone: true,
-    imports: [CommonModule, FadeInDirective, TerminalComponent],
+    imports: [FadeInDirective, TerminalComponent],
     templateUrl: './about.component.html',
     styleUrl: './about.component.scss',
 })

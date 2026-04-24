@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { FadeInDirective } from '../../directives/fade-in.directive';
 
 @Component({
     selector: 'app-process',
     standalone: true,
-    imports: [CommonModule, FadeInDirective],
+    imports: [FadeInDirective],
     templateUrl: './process.component.html',
     styleUrls: ['./process.component.scss'],
 })

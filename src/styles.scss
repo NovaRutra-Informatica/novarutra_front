@@ -197,6 +197,30 @@ body {
     100% { transform: scale(1.5); opacity: 0; }
 }
 
+// ── Motion toggles ───────────────────────────────────────────────────────────
+// Respect the user's OS-level motion preference, and drop the most expensive
+// decorative animations on mobile (coarse pointer + no hover). This was the
+// biggest contributor to the "Style & Layout 2.6s" main-thread time on mobile
+// — the tradeoff is that pulses/floats still work on desktop where GPUs are
+// strong enough to composite them cheaply.
+@media (prefers-reduced-motion: reduce), (hover: none) and (pointer: coarse) {
+    .floating-card,
+    .badge-tech::after,
+    .whatsapp-float::before,
+    .scroll-down i,
+    .stats-section .packet,
+    .stats-section .vias circle,
+    .stat-item .number,
+    .timeline-item::after {
+        animation: none !important;
+    }
+
+    .hero-bg-carousel .bg-slide {
+        transition: opacity 0.6s ease-in-out;
+        &.active { transform: none; }
+    }
+}
+
 // ── Services "featured" orbit decoration ─────────────────────────────────────
 // These classes are only used by the services featured card, but live here
 // so the component stylesheet stays under the strict anyComponentStyle budget.

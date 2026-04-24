@@ -9,7 +9,14 @@ nav {
     width: 100%;
     padding: 1.5rem 0;
     background: transparent;
-    transition: all 0.4s ease;
+    // Transition only paint/composite properties — animating `padding` here
+    // forces layout on every frame (PSI flagged this as forced reflow). The
+    // padding now snaps on the `.scrolled` threshold, which is imperceptible
+    // since it happens once per scroll crossing.
+    transition:
+        background 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
 
     &.scrolled {
         padding: 1rem 0;
@@ -89,14 +96,15 @@ nav {
     .btn-contact {
         padding: 10px 24px;
         border-radius: 50px;
-        background: $primary-color;
+        background: $primary-strong;
+        color: #fff;
         font-weight: 600;
         box-shadow: 0 0 10px rgba($primary-color, 0.3);
         transition: all 0.3s;
 
         &:hover {
             background: $text-main;
-            color: $primary-color;
+            color: $primary-strong;
             box-shadow: 0 0 20px $primary-glow;
         }
     }

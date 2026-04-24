@@ -36,7 +36,10 @@ const HERO_FILES = [
     'image10.jpeg',
 ];
 
-const HERO_WIDTHS = [640, 1280, 1920];
+// 1440 added because most desktop viewports (1366–1536px) were picking the
+// 1920 variant (+36% oversized) when 1440 is a closer match. PSI flagged
+// this as ~256 KiB of wasted bytes across the carousel.
+const HERO_WIDTHS = [640, 1280, 1440, 1920];
 const WEBP_QUALITY = 65; // was 72 — PSI flagged hero images as over-encoded.
 const AVIF_QUALITY = 50;
 const CLIENT_LOGO_MAX_WIDTH = 400;

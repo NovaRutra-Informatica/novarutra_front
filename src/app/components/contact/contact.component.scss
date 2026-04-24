@@ -1,74 +1,67 @@
 @use 'variables' as *;
-@use 'sass:color';
+
+// NOTE: .contact-form, .form-group, .btn-submit and .success-message live in
+// src/styles.scss (global) to keep this file under the component-style budget.
+
+:host { display: block; }
 
 .contact-section {
-    padding: 100px 20px;
-    background-color: $bg-dark;
     position: relative;
+    padding: 100px 20px;
     overflow: hidden;
+    background-color: $bg-dark;
 
-    @media (max-width: $mobile) {
-        padding: 70px 20px;
-    }
+    @media (max-width: $mobile) { padding: 70px 20px; }
 }
 
-.section-header {
-    text-align: center;
-    margin-bottom: 60px;
+.section-header .subtitle {
+    color: $primary-text;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
 
-    .subtitle {
-        color: $primary-color;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        font-size: 0.9rem;
-        margin-bottom: 10px;
-    }
-
-    h2 {
-        font-size: clamp(1.6rem, 4vw, 2.5rem);
-        color: $text-main;
-    }
+.section-header h2 {
+    font-size: clamp(1.6rem, 4vw, 2.5rem);
+    color: $text-main;
 }
 
 .contact-wrapper {
-    max-width: 1100px;
-    margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr 1.5fr;
     gap: 50px;
-    background: rgba(255, 255, 255, 0.02);
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 5px;
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 20px;
-    padding: 5px;
+    background: rgba(255, 255, 255, 0.02);
     backdrop-filter: blur(10px);
 
-    @media (max-width: 900px) {
-        grid-template-columns: 1fr;
-    }
+    @media (max-width: 900px) { grid-template-columns: 1fr; }
 }
 
+// ── Left: channels ───────────────────────────────────────────────────────────
+
 .contact-info {
-    background: $bg-card;
-    padding: 40px;
-    border-radius: 15px;
     position: relative;
-    overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    overflow: hidden;
+    padding: 40px;
+    border-radius: 15px;
+    background: $bg-card;
 
-    @media (max-width: $mobile) {
-        padding: 28px 20px;
-    }
+    @media (max-width: $mobile) { padding: 28px 20px; }
 
-    h3 {
-        font-size: 1.5rem;
-        margin-bottom: 15px;
-    }
-    p {
-        color: $text-muted;
+    h3 { font-size: 1.5rem; margin-bottom: 15px; }
+
+    > p {
         margin-bottom: 40px;
         font-size: 0.95rem;
+        color: $text-muted;
     }
 
     .info-items {
@@ -82,166 +75,60 @@
         align-items: center;
         gap: 15px;
 
-        .icon-box {
-            width: 50px;
-            height: 50px;
-            background: rgba($primary-color, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: $primary-color;
-            font-size: 1.2rem;
-            transition: 0.3s;
-        }
-
         &:hover .icon-box {
             background: $primary-color;
-            color: white;
+            color: #fff;
             transform: scale(1.1);
         }
+    }
 
-        .details {
-            display: flex;
-            flex-direction: column;
+    .icon-box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: rgba($primary-color, 0.1);
+        color: $primary-color;
+        font-size: 1.2rem;
+        transition: 0.3s;
+    }
 
-            span {
-                font-size: 0.85rem;
-                color: $text-muted;
-                text-transform: uppercase;
-            }
-            a,
-            p {
-                font-size: 1rem;
-                color: $text-main;
-                font-weight: 500;
-                text-decoration: none;
-                margin: 0;
-            }
-            a:hover {
-                color: $primary-color;
-            }
+    .details {
+        display: flex;
+        flex-direction: column;
+
+        span {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            color: $text-muted;
         }
+
+        a,
+        p {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: 500;
+            color: $text-main;
+            text-decoration: none;
+        }
+
+        a:hover { color: $primary-color; }
     }
 
     .decoration-circle {
         position: absolute;
         bottom: -50px;
         right: -50px;
+        z-index: 0;
         width: 150px;
         height: 150px;
+        border-radius: 50%;
         background: radial-gradient(
             circle,
             rgba($primary-color, 0.2) 0%,
             rgba(0, 0, 0, 0) 70%
         );
-        border-radius: 50%;
-        z-index: 0;
-    }
-}
-
-.contact-form {
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-
-    @media (max-width: $mobile) {
-        padding: 28px 20px;
-    }
-
-    .form-group {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-
-        label {
-            font-size: 0.9rem;
-            color: $text-muted;
-            font-weight: 500;
-        }
-
-        input,
-        textarea {
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            border-radius: 8px;
-            color: white;
-            font-family: inherit;
-            font-size: 1rem;
-            transition: 0.3s;
-
-            &:focus {
-                outline: none;
-                border-color: $primary-color;
-                background: rgba(0, 0, 0, 0.5);
-                box-shadow: 0 0 10px rgba($primary-color, 0.1);
-            }
-        }
-    }
-
-    .btn-submit {
-        margin-top: 10px;
-        background: $primary-color;
-        color: white;
-        border: none;
-        padding: 15px;
-        border-radius: 8px;
-        font-size: 1rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: 0.3s;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-
-        &:hover {
-            background: color.adjust($primary-color, $lightness: 5%);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba($primary-color, 0.3);
-        }
-
-        &:disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
-        }
-    }
-}
-
-.success-message {
-    display: flex;
-    align-items: center;
-    gap: 24px;
-    background: rgba($primary-color, 0.08);
-    border: 1px solid rgba($primary-color, 0.3);
-    border-radius: 20px;
-    padding: 48px 40px;
-    flex: 1;
-
-    @media (max-width: $mobile) {
-        flex-direction: column;
-        text-align: center;
-        padding: 36px 24px;
-    }
-
-    i {
-        font-size: 3rem;
-        color: $primary-color;
-        flex-shrink: 0;
-    }
-
-    h4 {
-        font-size: 1.3rem;
-        font-weight: 700;
-        color: $text-main;
-        margin-bottom: 8px;
-    }
-
-    p {
-        color: $text-muted;
-        font-size: 0.95rem;
-        line-height: 1.6;
     }
 }

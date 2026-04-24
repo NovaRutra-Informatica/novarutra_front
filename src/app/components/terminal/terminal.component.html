@@ -1,4 +1,4 @@
-<div class="terminal" role="presentation" aria-label="Sobre Alessandro Lima">
+<div class="terminal" aria-label="Sobre Alessandro Lima">
     <div class="terminal-bar" aria-hidden="true">
         <span class="dot dot-red"></span>
         <span class="dot dot-yellow"></span>
@@ -10,7 +10,7 @@
             <span class="prompt">$</span>
             <span class="cmd"> cat sobre-nos.txt</span>
         </p>
-        <p class="output-text">
+        <p class="output-text" aria-live="off">
             {{ displayedText()
             }}<span class="cursor" aria-hidden="true" [class.hidden]="isDone()"
                 >▋</span

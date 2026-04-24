@@ -1,127 +1,76 @@
 @use 'variables' as *;
 
+:host { display: block; }
+
+// .hero-bg-carousel (overlay + bg-slide + img) lives in styles.scss (global).
+
 .hero {
     position: relative;
-    height: 100vh;
-    min-height: 600px;
     display: flex;
     align-items: center;
+    height: 100vh;
+    min-height: 600px;
     overflow: hidden;
     color: $text-main;
 }
 
-.hero-bg-carousel {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    background-color: #000;
+// Hero container needs z-index to sit above the carousel.
+.container { z-index: 2; }
 
-    .overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 2;
-        background: linear-gradient(
-            135deg,
-            rgba(10, 10, 10, 0.95) 0%,
-            rgba(10, 10, 10, 0.7) 50%,
-            rgba(0, 123, 255, 0.15) 100%
-        );
-    }
-
-    .bg-slide {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-size: cover;
-        background-position: center;
-        z-index: 1;
-        opacity: 0;
-        transition:
-            opacity 1.5s ease-in-out,
-            transform 6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        transform: scale(1);
-
-        &.active {
-            opacity: 1;
-            transform: scale(1.05);
-            z-index: 1;
-        }
-    }
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-    width: 100%;
-    z-index: 2;
-}
-
-.content {
-    max-width: 700px;
-}
+.content { max-width: 700px; }
 
 .badge-tech {
+    position: relative;
     display: inline-block;
-    background: rgba($primary-color, 0.15);
-    color: $primary-color;
     padding: 8px 16px;
+    margin-bottom: 20px;
+    border: 1px solid rgba($primary-color, 0.3);
     border-radius: 30px;
+    background: rgba($primary-color, 0.15);
+    color: $primary-text;
     font-size: 0.85rem;
     font-weight: 600;
     letter-spacing: 2px;
-    margin-bottom: 20px;
-    border: 1px solid rgba($primary-color, 0.3);
-    backdrop-filter: blur(5px);
-    animation: badge-pulse 3.5s ease-in-out infinite;
-}
 
-@keyframes badge-pulse {
-    0%,
-    100% {
-        box-shadow: 0 0 0 0 rgba($primary-color, 0);
-    }
-    50% {
-        box-shadow: 0 0 14px 4px rgba($primary-color, 0.2);
+    &::after {
+        content: '';
+        position: absolute;
+        inset: -4px;
+        border: 2px solid rgba($primary-color, 0.3);
+        border-radius: 30px;
+        opacity: 0;
+        pointer-events: none;
+        will-change: transform, opacity;
+        animation: badge-pulse 3.5s ease-in-out infinite;
     }
 }
+// @keyframes badge-pulse / hero-fade-up / bounce live in src/styles.scss.
 
 h1 {
     font-size: 3.5rem;
-    line-height: 1.1;
     font-weight: 700;
+    line-height: 1.1;
     margin-bottom: 25px;
 
+    @media (max-width: $mobile) { font-size: 2.5rem; }
+
     .highlight {
-        color: transparent;
-        -webkit-text-stroke: 1px $primary-color;
         background: linear-gradient(90deg, $primary-color, #fff);
-        background-clip: text;
         -webkit-background-clip: text;
-        text-fill-color: transparent;
+        background-clip: text;
+        -webkit-text-stroke: 1px $primary-color;
+        color: transparent;
         font-weight: 800;
         text-shadow: 0 0 30px rgba($primary-color, 0.4);
-    }
-
-    @media (max-width: $mobile) {
-        font-size: 2.5rem;
     }
 }
 
 p {
-    font-size: 1.15rem;
-    color: $text-muted;
-    margin-bottom: 40px;
-    line-height: 1.6;
     max-width: 600px;
+    margin-bottom: 40px;
+    color: $text-muted;
+    font-size: 1.15rem;
+    line-height: 1.6;
 
     @media (max-width: $mobile) {
         font-size: 1rem;
@@ -139,34 +88,33 @@ p {
     }
 }
 
-.btn-primary {
+.btn-primary,
+.btn-outline {
     padding: 15px 35px;
-    background: $primary-color;
-    color: #fff;
     border-radius: 50px;
     font-weight: 600;
     text-decoration: none;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 20px rgba($primary-color, 0.4);
+}
+
+.btn-primary {
+    background: $primary-color;
     border: 2px solid $primary-color;
+    color: #fff;
+    box-shadow: 0 4px 20px rgba($primary-color, 0.4);
 
     &:hover {
         background: transparent;
-        color: $primary-color;
-        box-shadow: 0 4px 30px rgba($primary-color, 0.6);
+        color: $primary-text;
         transform: translateY(-3px);
+        box-shadow: 0 4px 30px rgba($primary-color, 0.6);
     }
 }
 
 .btn-outline {
-    padding: 15px 35px;
     background: transparent;
-    color: #fff;
     border: 2px solid rgba(255, 255, 255, 0.2);
-    border-radius: 50px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.3s ease;
+    color: #fff;
 
     &:hover {
         border-color: $text-main;
@@ -175,33 +123,15 @@ p {
     }
 }
 
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+// Fade-in stagger for hero items (keyframe in global).
+[class^='fade-in-'] {
+    opacity: 0;
+    animation: hero-fade-up 0.8s ease-out forwards;
 }
 
-.fade-in-1 {
-    animation: fadeInUp 0.8s ease-out forwards;
-    opacity: 0;
-}
-.fade-in-2 {
-    animation: fadeInUp 0.8s ease-out 0.2s forwards;
-    opacity: 0;
-}
-.fade-in-3 {
-    animation: fadeInUp 0.8s ease-out 0.4s forwards;
-    opacity: 0;
-}
-.fade-in-4 {
-    animation: fadeInUp 0.8s ease-out 0.6s forwards;
-    opacity: 0;
-}
+.fade-in-2 { animation-delay: 0.2s; }
+.fade-in-3 { animation-delay: 0.4s; }
+.fade-in-4 { animation-delay: 0.6s; }
 
 .scroll-down {
     position: absolute;
@@ -211,31 +141,13 @@ p {
     color: #fff;
     font-size: 1.5rem;
     opacity: 0.7;
-    transition: opacity 0.3s;
     text-decoration: none;
+    transition: opacity 0.3s;
 
-    i {
-        animation: bounce 2s infinite;
-    }
+    i { animation: bounce 2s infinite; }
 
     &:hover {
         opacity: 1;
-        color: $primary-color;
-    }
-}
-
-@keyframes bounce {
-    0%,
-    20%,
-    50%,
-    80%,
-    100% {
-        transform: translateY(0);
-    }
-    40% {
-        transform: translateY(-10px);
-    }
-    60% {
-        transform: translateY(-5px);
+        color: $primary-text;
     }
 }

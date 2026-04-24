@@ -1,20 +1,49 @@
 <section id="inicio" class="hero">
-    <div class="hero-bg-carousel">
-        <div class="overlay"></div>
-
-        @for (img of heroImages; track img; let i = $index) {
-            <div
+    <div class="hero-bg-carousel" aria-hidden="true">
+        @for (img of heroImages; track img.id; let i = $index) {
+            <picture
                 class="bg-slide"
                 [class.active]="i === currentIndex()"
-                [ngStyle]="{ 'background-image': 'url(' + img + ')' }"
-            ></div>
+            >
+                @if (i === 0) {
+                    <source
+                        type="image/avif"
+                        [attr.srcset]="
+                            'assets/hero/' + img.id + '-640.avif 640w, ' +
+                            'assets/hero/' + img.id + '-1280.avif 1280w, ' +
+                            'assets/hero/' + img.id + '-1920.avif 1920w'
+                        "
+                        sizes="100vw"
+                    />
+                }
+                <source
+                    type="image/webp"
+                    [attr.srcset]="
+                        'assets/hero/' + img.id + '-640.webp 640w, ' +
+                        'assets/hero/' + img.id + '-1280.webp 1280w, ' +
+                        'assets/hero/' + img.id + '-1920.webp 1920w'
+                    "
+                    sizes="100vw"
+                />
+                <img
+                    [src]="'assets/hero/' + img.id + '-1280.webp'"
+                    [alt]="img.alt"
+                    [attr.fetchpriority]="i === 0 ? 'high' : null"
+                    [attr.loading]="i === 0 ? 'eager' : 'lazy'"
+                    decoding="async"
+                    width="1920"
+                    height="1080"
+                />
+            </picture>
         }
+        <div class="overlay"></div>
     </div>
 
     <div class="container">
         <div class="content">
             <span class="badge-tech fade-in-1">
-                <i class="fas fa-tools"></i> MANUTENÇÃO ESPECIALIZADA EM T.I.
+                <i class="fas fa-tools" aria-hidden="true"></i> MANUTENÇÃO
+                ESPECIALIZADA EM T.I.
             </span>
 
             <h1 class="fade-in-2">
@@ -30,16 +59,17 @@
 
             <div class="cta-group fade-in-4">
                 <a href="#contato" class="btn-primary">
-                    <i class="fas fa-paper-plane"></i> Solicitar Orçamento
+                    <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                    Solicitar Orçamento
                 </a>
                 <a href="#servicos" class="btn-outline">
-                    <i class="fas fa-wrench"></i> Ver Serviços
+                    <i class="fas fa-wrench" aria-hidden="true"></i> Ver Serviços
                 </a>
             </div>
         </div>
     </div>
 
-    <a href="#sobre" class="scroll-down">
-        <i class="fas fa-chevron-down"></i>
+    <a href="#sobre" class="scroll-down" aria-label="Rolar para a próxima seção">
+        <i class="fas fa-chevron-down" aria-hidden="true"></i>
     </a>
 </section>

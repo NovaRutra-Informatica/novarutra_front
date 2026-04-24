@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8" />
+        <title>NovaRutra Informática</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="robots" content="noindex" />
+        <!--
+          GitHub Pages SPA fallback.
+          Preserves the requested path + query and forwards them to the SPA
+          via a sessionStorage handoff that app bootstrap can replay.
+          Works because GH Pages serves this file for any unresolved path
+          under the custom domain.
+        -->
+        <script>
+            (function () {
+                var l = window.location;
+                sessionStorage.setItem('redirect', l.pathname + l.search + l.hash);
+                l.replace('/');
+            })();
+        </script>
+    </head>
+    <body>
+        <p>Redirecionando…</p>
+    </body>
+</html>

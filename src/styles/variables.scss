@@ -2,6 +2,11 @@ $primary-color: #007bff;
 $primary-glow: rgba(0, 123, 255, 0.5);
 $secondary-color: #00d4ff;
 
+// Text variant of primary color (passes WCAG AA for small text on dark bg).
+// Use this for inline text ("section-tag", badges, muted accent labels).
+// #3b96ff on #0a0a0a ≈ 6.3:1 contrast.
+$primary-text: #3b96ff;
+
 // Cores de Fundo (Dark Mode)
 $bg-dark: #0a0a0a;
 $bg-card: #141414;

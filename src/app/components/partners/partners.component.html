@@ -1,15 +1,17 @@
 <section id="clientes" class="partners-section" aria-label="Clientes">
     <div class="container">
-        <h3 class="section-label">Empresas que confiam na NovaRutra</h3>
+        <h2 class="section-label">Empresas que confiam na NovaRutra</h2>
 
-        <div class="slider" aria-hidden="true">
+        <div class="slider">
             <div class="slide-track">
-                @for (partner of partners; track $index) {
+                @for (partner of partners; track $index; let i = $index) {
                     <div class="slide">
                         <img
                             [src]="partner.logo"
                             [alt]="partner.name"
+                            [attr.aria-hidden]="i >= uniqueCount ? 'true' : null"
                             loading="lazy"
+                            decoding="async"
                         />
                     </div>
                 }

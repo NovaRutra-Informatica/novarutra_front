@@ -6,37 +6,47 @@ import {
     PLATFORM_ID,
     signal,
 } from '@angular/core';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
+
+interface HeroSlide {
+    id: string;
+    alt: string;
+}
 
 @Component({
     selector: 'app-hero',
     standalone: true,
-    imports: [CommonModule],
     templateUrl: './hero.component.html',
     styleUrls: ['./hero.component.scss'],
 })
 export class HeroComponent implements OnInit, OnDestroy {
-    heroImages: string[] = [
-        'assets/image1.jpeg',
-        'assets/image4.jpeg',
-        'assets/image6.jpeg',
-        'assets/image7.jpeg',
-        'assets/image8.jpeg',
-        'assets/image9.jpeg',
-        'assets/image10.jpeg',
+    heroImages: HeroSlide[] = [
+        { id: 'image1', alt: 'Técnico realizando manutenção de computador' },
+        { id: 'image4', alt: 'Notebook aberto para reparo em bancada' },
+        { id: 'image6', alt: 'Servidor sendo configurado' },
+        { id: 'image7', alt: 'Atendimento técnico especializado' },
+        { id: 'image8', alt: 'Diagnóstico de hardware' },
+        { id: 'image9', alt: 'Manutenção preventiva em equipamento' },
+        { id: 'image10', alt: 'Reparo de peças de computador' },
     ];
 
     currentIndex = signal(0);
-    private intervalId: any;
+    private intervalId: ReturnType<typeof setInterval> | null = null;
     private readonly isBrowser: boolean;
 
-    constructor(@Inject(PLATFORM_ID) platformId: Object) {
+    constructor(@Inject(PLATFORM_ID) platformId: object) {
         this.isBrowser = isPlatformBrowser(platformId);
     }
 
     ngOnInit() {
-        if (this.isBrowser) {
-            this.startCarousel();
+        if (!this.isBrowser) return;
+        // Defer the carousel start so it never competes with LCP/hydration.
+        const start = () => this.startCarousel();
+        if ('requestIdleCallback' in window) {
+            (window as unknown as { requestIdleCallback: (cb: () => void, opts?: { timeout: number }) => number })
+                .requestIdleCallback(start, { timeout: 3000 });
+        } else {
+            setTimeout(start, 2000);
         }
     }
 
@@ -46,7 +56,7 @@ export class HeroComponent implements OnInit, OnDestroy {
         }
     }
 
-    startCarousel() {
+    private startCarousel() {
         this.intervalId = setInterval(() => {
             this.currentIndex.update(
                 (index) => (index + 1) % this.heroImages.length,

@@ -1,67 +1,41 @@
 @use 'variables' as *;
 
+// NOTE: orbit-wrapper, ring, orbit-center and icon-breathe keyframes live in
+// src/styles.scss (global) to keep this file under the component-style budget.
+
+:host { display: block; }
+
 .services-section {
-    padding: 110px 20px;
     background-color: $bg-card;
-
-    @media (max-width: $mobile) {
-        padding: 70px 20px;
-    }
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.section-header {
-    text-align: center;
-    margin-bottom: 60px;
-}
-
-.section-tag {
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    color: $primary-color;
-    font-size: 0.8rem;
-    font-weight: 600;
-    margin-bottom: 14px;
-}
-
-h2 {
-    font-size: clamp(1.8rem, 3vw, 2.6rem);
-    font-weight: 800;
-    color: $text-main;
-    margin-bottom: 16px;
 }
 
 .section-subtitle {
-    font-size: 1rem;
-    color: $text-muted;
     max-width: 560px;
     margin: 0 auto;
+    font-size: 1rem;
     line-height: 1.7;
+    color: $text-muted;
 }
 
-// ── Featured card ─────────────────────────────────────────────────────────────
+// ── Featured card ────────────────────────────────────────────────────────────
 
 .service-featured {
+    position: relative;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 40px;
     align-items: center;
+    gap: 40px;
+    padding: 60px 56px;
+    margin-bottom: 24px;
+    overflow: hidden;
+    border: 1px solid rgba($primary-color, 0.22);
+    border-radius: 28px;
     background: linear-gradient(
         135deg,
         rgba($primary-color, 0.08) 0%,
         rgba($primary-color, 0.02) 60%,
         transparent 100%
     );
-    border: 1px solid rgba($primary-color, 0.22);
-    border-radius: 28px;
-    padding: 60px 56px;
-    margin-bottom: 24px;
-    position: relative;
-    overflow: hidden;
 
     &::before {
         content: '';
@@ -70,21 +44,18 @@ h2 {
         left: -80px;
         width: 320px;
         height: 320px;
+        pointer-events: none;
         background: radial-gradient(
             circle,
             rgba($primary-color, 0.1),
             transparent 70%
         );
-        pointer-events: none;
     }
 
     @media (max-width: 900px) {
         grid-template-columns: 1fr;
         padding: 44px 36px;
-
-        .featured-visual {
-            display: none;
-        }
+        .featured-visual { display: none; }
     }
 
     @media (max-width: $mobile) {
@@ -96,161 +67,53 @@ h2 {
 .featured-content {
     position: relative;
     z-index: 1;
+
+    h3 {
+        margin-bottom: 18px;
+        font-size: clamp(1.9rem, 3vw, 2.5rem);
+        font-weight: 800;
+        line-height: 1.15;
+        color: $text-main;
+    }
+
+    p {
+        max-width: 440px;
+        margin-bottom: 32px;
+        font-size: 1rem;
+        line-height: 1.75;
+        color: $text-muted;
+    }
 }
 
 .feat-num {
     display: block;
+    margin-bottom: -12px;
     font-size: 8rem;
     font-weight: 900;
     line-height: 0.85;
     color: rgba($primary-color, 0.06);
     user-select: none;
-    margin-bottom: -12px;
 
-    @media (max-width: $mobile) {
-        font-size: 5rem;
-    }
+    @media (max-width: $mobile) { font-size: 5rem; }
 }
 
-.feat-icon {
-    width: 58px;
-    height: 58px;
-    border-radius: 16px;
-    background: rgba($primary-color, 0.12);
-    border: 1px solid rgba($primary-color, 0.28);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 22px;
-
-    i {
-        font-size: 1.45rem;
-        color: $primary-color;
-    }
-}
-
-.featured-content h3 {
-    font-size: clamp(1.9rem, 3vw, 2.5rem);
-    font-weight: 800;
-    color: $text-main;
-    line-height: 1.15;
-    margin-bottom: 18px;
-}
-
-.featured-content p {
-    font-size: 1rem;
-    color: $text-muted;
-    line-height: 1.75;
-    margin-bottom: 32px;
-    max-width: 440px;
-}
-
+// .feat-icon and .card-icon live in styles.scss (global).
+// Chip visuals are on .chip/.chip--uppercase (global); .feat-chips is layout only.
 .feat-chips {
-    list-style: none;
-    padding: 0;
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-
-    li {
-        background: rgba($primary-color, 0.1);
-        border: 1px solid rgba($primary-color, 0.28);
-        color: $primary-color;
-        font-size: 0.75rem;
-        font-weight: 700;
-        padding: 5px 14px;
-        border-radius: 20px;
-        letter-spacing: 0.4px;
-        text-transform: uppercase;
-    }
+    list-style: none;
+    padding: 0;
 }
-
-// ── Orbit animation ───────────────────────────────────────────────────────────
 
 .featured-visual {
     display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.orbit-wrapper {
-    position: relative;
-    width: 300px;
-    height: 300px;
-    flex-shrink: 0;
-}
-
-.ring {
-    position: absolute;
-    border-radius: 50%;
-
-    &.ring-1 {
-        inset: 0;
-        border: 1px dashed rgba($primary-color, 0.22);
-        animation: orbit-spin 28s linear infinite;
-    }
-
-    &.ring-2 {
-        inset: 44px;
-        border: 1px dashed rgba($primary-color, 0.18);
-        animation: orbit-spin 18s linear infinite reverse;
-    }
-
-    &.ring-3 {
-        inset: 88px;
-        border: 1px solid rgba($primary-color, 0.3);
-        animation: orbit-spin 10s linear infinite;
-    }
-}
-
-.orbit-center {
-    position: absolute;
-    inset: 0;
-    display: flex;
     align-items: center;
     justify-content: center;
-
-    &::before {
-        content: '';
-        position: absolute;
-        width: 114px;
-        height: 114px;
-        border-radius: 50%;
-        background: rgba($primary-color, 0.07);
-        border: 1px solid rgba($primary-color, 0.2);
-        box-shadow: 0 0 40px rgba($primary-color, 0.15);
-    }
-
-    i {
-        position: relative;
-        font-size: 3.6rem;
-        color: $primary-color;
-        filter: drop-shadow(0 0 18px rgba($primary-color, 0.7));
-        z-index: 1;
-        animation: icon-breathe 4s ease-in-out infinite;
-    }
 }
 
-@keyframes orbit-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-@keyframes icon-breathe {
-    0%,
-    100% {
-        filter: drop-shadow(0 0 14px rgba($primary-color, 0.5));
-    }
-    50% {
-        filter: drop-shadow(0 0 28px rgba($primary-color, 0.9));
-    }
-}
-
-// ── Services grid ─────────────────────────────────────────────────────────────
+// ── Services grid ────────────────────────────────────────────────────────────
 
 .services-grid {
     display: grid;
@@ -260,154 +123,23 @@ h2 {
     padding: 0;
     margin: 0;
 
-    @media (max-width: 900px) {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    @media (max-width: $mobile) {
-        grid-template-columns: 1fr;
-    }
+    @media (max-width: 900px)   { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: $mobile) { grid-template-columns: 1fr; }
 }
 
+// .service-card (corner brackets, hover) and .card-num live in styles.scss.
 .service-card {
-    position: relative;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: 20px;
-    padding: 36px 28px 32px;
-    overflow: hidden;
-    transition:
-        border-color 0.3s,
-        transform 0.3s,
-        box-shadow 0.3s;
-
-    // Corner bracket decoration
-    &::before,
-    &::after {
-        content: '';
-        position: absolute;
-        width: 18px;
-        height: 18px;
-        opacity: 0.25;
-        transition: opacity 0.3s;
+    h3 {
+        margin-bottom: 10px;
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: $text-main;
     }
-
-    &::before {
-        top: 14px;
-        right: 14px;
-        border-top: 2px solid $primary-color;
-        border-right: 2px solid $primary-color;
-        border-radius: 0 4px 0 0;
-    }
-
-    &::after {
-        bottom: 14px;
-        left: 14px;
-        border-bottom: 2px solid $primary-color;
-        border-left: 2px solid $primary-color;
-        border-radius: 0 0 0 4px;
-    }
-
-    &:hover {
-        border-color: rgba($primary-color, 0.35);
-        transform: translateY(-5px);
-        box-shadow: 0 20px 44px -8px rgba(0, 0, 0, 0.45);
-
-        &::before,
-        &::after {
-            opacity: 0.7;
-        }
-
-        .card-icon {
-            background: $primary-color;
-            border-color: $primary-color;
-            box-shadow: 0 0 22px rgba($primary-color, 0.45);
-
-            i {
-                color: #fff;
-            }
-        }
-
-        .scan-line {
-            animation: scan-down 0.75s ease-out forwards;
-        }
+    p {
+        margin: 0;
+        font-size: 0.88rem;
+        line-height: 1.65;
+        color: $text-muted;
     }
 }
 
-.card-num {
-    position: absolute;
-    top: 18px;
-    right: 36px;
-    font-size: 4rem;
-    font-weight: 900;
-    color: rgba(255, 255, 255, 0.03);
-    line-height: 1;
-    user-select: none;
-    pointer-events: none;
-}
-
-.scan-line {
-    position: absolute;
-    top: -2px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(
-        90deg,
-        transparent 0%,
-        $primary-color 50%,
-        transparent 100%
-    );
-    opacity: 0;
-    pointer-events: none;
-}
-
-@keyframes scan-down {
-    0% {
-        top: 0;
-        opacity: 1;
-    }
-    70% {
-        opacity: 0.9;
-    }
-    100% {
-        top: 100%;
-        opacity: 0;
-    }
-}
-
-.card-icon {
-    width: 54px;
-    height: 54px;
-    border-radius: 14px;
-    background: rgba($primary-color, 0.1);
-    border: 1px solid rgba($primary-color, 0.22);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 22px;
-    transition:
-        background 0.3s,
-        border-color 0.3s,
-        box-shadow 0.3s;
-
-    i {
-        font-size: 1.3rem;
-        color: $primary-color;
-        transition: color 0.3s;
-    }
-}
-
-.service-card h3 {
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: $text-main;
-    margin-bottom: 10px;
-}
-
-.service-card p {
-    font-size: 0.88rem;
-    color: $text-muted;
-    line-height: 1.65;
-    margin: 0;
-}

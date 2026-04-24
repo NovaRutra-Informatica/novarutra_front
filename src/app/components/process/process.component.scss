@@ -1,48 +1,12 @@
 @use 'variables' as *;
-@use 'sass:color';
 
 $gutter: 40px;
-$dot-size: 18px;
+$dot: 18px;
 
-.process-section {
-    padding: 110px 20px;
-    background-color: $bg-dark;
+:host { display: block; }
 
-    @media (max-width: $mobile) {
-        padding: 70px 20px;
-    }
-}
-
-.container {
-    max-width: 1100px;
-    margin: 0 auto;
-}
-
-.section-header {
-    text-align: center;
-    margin-bottom: 80px;
-
-    @media (max-width: $mobile) {
-        margin-bottom: 50px;
-    }
-}
-
-.section-tag {
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    color: $primary-color;
-    font-size: 0.8rem;
-    font-weight: 600;
-    margin-bottom: 14px;
-}
-
-h2 {
-    font-size: clamp(1.8rem, 3vw, 2.6rem);
-    font-weight: 800;
-    color: $text-main;
-}
-
-// ── Timeline ─────────────────────────────────────────────────────────────────
+.process-section { background-color: $bg-dark; }
+.section-header { margin-bottom: 80px; }
 
 .timeline {
     position: relative;
@@ -50,15 +14,14 @@ h2 {
     padding: 10px 0 0;
     margin: 0;
 
-    // Vertical center line
     &::before {
         content: '';
         position: absolute;
-        left: 50%;
         top: 0;
         bottom: 0;
-        transform: translateX(-50%);
+        left: 50%;
         width: 2px;
+        transform: translateX(-50%);
         background: linear-gradient(
             to bottom,
             transparent,
@@ -69,9 +32,7 @@ h2 {
     }
 
     @media (max-width: $mobile) {
-        &::before {
-            left: 22px;
-        }
+        &::before { left: 22px; }
     }
 }
 
@@ -80,39 +41,31 @@ h2 {
     width: calc(50% - #{$gutter});
     margin-bottom: 55px;
 
-    // Dot on the center line
     &::after {
         content: '';
         position: absolute;
         top: 32px;
-        width: $dot-size;
-        height: $dot-size;
+        z-index: 1;
+        width: $dot;
+        height: $dot;
         border-radius: 50%;
         background: $primary-color;
         box-shadow:
             0 0 0 5px rgba($primary-color, 0.15),
             0 0 14px rgba($primary-color, 0.5);
-        z-index: 1;
         animation: dot-pulse 2.5s ease-in-out infinite;
     }
 
     &.item-left {
         margin-right: auto;
-
-        &::after {
-            right: -($gutter + $dot-size * 0.5);
-        }
+        &::after { right: -($gutter + $dot * 0.5); }
     }
 
     &.item-right {
         margin-left: calc(50% + #{$gutter});
-
-        &::after {
-            left: -($gutter + $dot-size * 0.5);
-        }
+        &::after { left: -($gutter + $dot * 0.5); }
     }
 
-    // Mobile: single column with line on the left
     @media (max-width: $mobile) {
         width: calc(100% - 55px);
         margin-left: 55px !important;
@@ -125,13 +78,11 @@ h2 {
     }
 }
 
-// ── Step card ─────────────────────────────────────────────────────────────────
-
 .step-card {
-    background: rgba(255, 255, 255, 0.03);
+    padding: 36px 32px;
     border: 1px solid rgba(255, 255, 255, 0.06);
     border-radius: 20px;
-    padding: 36px 32px;
+    background: rgba(255, 255, 255, 0.03);
     transition:
         transform 0.3s,
         border-color 0.3s,
@@ -142,12 +93,8 @@ h2 {
         border-color: rgba($primary-color, 0.4);
         box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.4);
 
-        .step-icon {
-            background: $primary-color;
-            i {
-                color: #fff;
-            }
-        }
+        .step-icon { background: $primary-color; }
+        .step-icon i { color: #fff; }
     }
 
     h3 {
@@ -159,8 +106,8 @@ h2 {
 
     p {
         font-size: 0.93rem;
-        color: $text-muted;
         line-height: 1.65;
+        color: $text-muted;
     }
 }
 
@@ -172,15 +119,15 @@ h2 {
 }
 
 .step-icon {
-    width: 54px;
-    height: 54px;
-    border-radius: 14px;
-    background: rgba($primary-color, 0.12);
-    border: 1px solid rgba($primary-color, 0.2);
+    flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
+    width: 54px;
+    height: 54px;
+    border: 1px solid rgba($primary-color, 0.2);
+    border-radius: 14px;
+    background: rgba($primary-color, 0.12);
     transition: background 0.3s;
 
     i {
@@ -193,21 +140,8 @@ h2 {
 .step-num {
     font-size: 2.2rem;
     font-weight: 800;
-    color: rgba($primary-color, 0.2);
     line-height: 1;
+    color: rgba($primary-color, 0.2);
     user-select: none;
 }
-
-@keyframes dot-pulse {
-    0%,
-    100% {
-        box-shadow:
-            0 0 0 5px rgba($primary-color, 0.15),
-            0 0 14px rgba($primary-color, 0.4);
-    }
-    50% {
-        box-shadow:
-            0 0 0 9px rgba($primary-color, 0.12),
-            0 0 28px rgba($primary-color, 0.7);
-    }
-}
+// @keyframes dot-pulse lives in src/styles.scss (global).

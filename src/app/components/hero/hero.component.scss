@@ -98,14 +98,15 @@ p {
 }
 
 .btn-primary {
-    background: $primary-color;
-    border: 2px solid $primary-color;
+    background: $primary-strong;
+    border: 2px solid $primary-strong;
     color: #fff;
     box-shadow: 0 4px 20px rgba($primary-color, 0.4);
 
     &:hover {
         background: transparent;
         color: $primary-text;
+        border-color: $primary-color;
         transform: translateY(-3px);
         box-shadow: 0 4px 30px rgba($primary-color, 0.6);
     }
@@ -123,10 +124,10 @@ p {
     }
 }
 
-// Fade-in stagger for hero items (keyframe in global).
+// Hero copy slide-up (keyframe in global). `both` keeps the starting transform
+// applied during animation-delay so staggered items don't jump.
 [class^='fade-in-'] {
-    opacity: 0;
-    animation: hero-fade-up 0.8s ease-out forwards;
+    animation: hero-fade-up 0.8s ease-out both;
 }
 
 .fade-in-2 { animation-delay: 0.2s; }

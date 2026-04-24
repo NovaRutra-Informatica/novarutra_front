@@ -17,6 +17,14 @@ describe('NavbarComponent', () => {
         fixture.detectChanges();
     });
 
+    // The scroll handler defers via requestAnimationFrame; this helper runs
+    // onWindowScroll and then flushes the pending frame callback.
+    const scrollAndFlush = () =>
+        new Promise<void>((resolve) => {
+            component.onWindowScroll();
+            requestAnimationFrame(() => resolve());
+        });
+
     it('should create', () => {
         expect(component).toBeTruthy();
     });
@@ -46,23 +54,23 @@ describe('NavbarComponent', () => {
         expect(component.isMobileMenuOpen()).toBe(false);
     });
 
-    it('onWindowScroll sets isScrolled true when scrollY > 50', () => {
+    it('onWindowScroll sets isScrolled true when scrollY > 50', async () => {
         Object.defineProperty(window, 'scrollY', {
             value: 100,
             configurable: true,
             writable: true,
         });
-        component.onWindowScroll();
+        await scrollAndFlush();
         expect(component.isScrolled()).toBe(true);
     });
 
-    it('onWindowScroll sets isScrolled false when scrollY <= 50', () => {
+    it('onWindowScroll sets isScrolled false when scrollY <= 50', async () => {
         Object.defineProperty(window, 'scrollY', {
             value: 20,
             configurable: true,
             writable: true,
         });
-        component.onWindowScroll();
+        await scrollAndFlush();
         expect(component.isScrolled()).toBe(false);
     });
 

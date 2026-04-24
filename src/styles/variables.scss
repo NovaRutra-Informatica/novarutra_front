@@ -7,6 +7,10 @@ $secondary-color: #00d4ff;
 // #3b96ff on #0a0a0a ≈ 6.3:1 contrast.
 $primary-text: #3b96ff;
 
+// Darker variant for button *backgrounds* paired with white text.
+// #0062cc on #fff ≈ 4.83:1, passes WCAG AA for normal text.
+$primary-strong: #0062cc;
+
 // Cores de Fundo (Dark Mode)
 $bg-dark: #0a0a0a;
 $bg-card: #141414;

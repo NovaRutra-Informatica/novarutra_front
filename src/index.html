@@ -271,8 +271,8 @@
             crossorigin
         />
 
-        <!-- Fallback CSP for static hosting. Keep manifest + service-worker
-             origins if you later proxy through Cloudflare. -->
+        <!-- Static hosting CSP (GitHub Pages / Cloudflare). Add email
+             provider origins to connect-src when integrating the form. -->
         <meta
             http-equiv="Content-Security-Policy"
             content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://novarutra.com.br; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; worker-src 'self'; manifest-src 'self';"
@@ -300,7 +300,7 @@
                 <main class="noscript-card" role="alertdialog" aria-labelledby="ns-title" aria-describedby="ns-desc">
                     <header class="noscript-brand">
                         <img
-                            src="/assets/LOGO_WHITE-WITHOUT_BACKGROUND.png"
+                            src="/assets/logos/LOGO_WHITE-WITHOUT_BACKGROUND-90.webp"
                             alt=""
                             width="44"
                             height="44"

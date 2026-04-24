@@ -37,9 +37,22 @@ const HERO_FILES = [
 ];
 
 const HERO_WIDTHS = [640, 1280, 1920];
-const WEBP_QUALITY = 72;
-const AVIF_QUALITY = 55;
+const WEBP_QUALITY = 65; // was 72 — PSI flagged hero images as over-encoded.
+const AVIF_QUALITY = 50;
 const CLIENT_LOGO_MAX_WIDTH = 400;
+
+// Brand logos used in navbar/footer/og-tags. Output WebP at retina-ready
+// sizes and a small PNG fallback kept at the public/ path for OG/link cards.
+const LOGO_JOBS = [
+    {
+        src: 'logos/LOGO_WHITE-WITHOUT_BACKGROUND.png',
+        outDir: 'logos',
+        widths: [90, 180],
+        quality: 82,
+    },
+    // The banner/OG image stays PNG (metadata consumers cache it); just copy
+    // a smaller WebP alongside for on-site use if ever needed.
+];
 
 async function ensureDir(dir) {
     if (!existsSync(dir)) {
@@ -127,10 +140,37 @@ async function processClients() {
     }
 }
 
+async function processLogos() {
+    for (const job of LOGO_JOBS) {
+        const src = path.join(sources, job.src);
+        if (!existsSync(src)) {
+            console.warn(`[images]   skip logo: ${job.src} (missing)`);
+            continue;
+        }
+        const outDir = path.join(assets, job.outDir);
+        await ensureDir(outDir);
+        const base = path.basename(job.src, path.extname(job.src));
+        const srcKb = await fileSizeKb(src);
+
+        for (const width of job.widths) {
+            const out = path.join(outDir, `${base}-${width}.webp`);
+            await sharp(src)
+                .resize({ width, withoutEnlargement: true })
+                .webp({ quality: job.quality, effort: 5 })
+                .toFile(out);
+            const kb = await fileSizeKb(out);
+            console.log(
+                `[images] logo   ${job.src} (${srcKb} KB) -> ${path.basename(out)} (${kb} KB)`,
+            );
+        }
+    }
+}
+
 async function main() {
     console.log('[images] starting WebP/AVIF pipeline');
     await processHero();
     await processClients();
+    await processLogos();
     console.log('[images] done');
 }
 

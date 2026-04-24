@@ -3,6 +3,11 @@ import { PLATFORM_ID } from '@angular/core';
 import { vi } from 'vitest';
 import { HeroComponent } from './hero.component';
 
+// startCarousel is `private` on the component — tests reach it via this helper
+// so we don't widen the production API just for testing.
+const startCarousel = (c: HeroComponent) =>
+    (c as unknown as { startCarousel: () => void }).startCarousel();
+
 describe('HeroComponent', () => {
     let component: HeroComponent;
     let fixture: ComponentFixture<HeroComponent>;
@@ -27,7 +32,7 @@ describe('HeroComponent', () => {
         expect(component).toBeTruthy();
     });
 
-    it('has 7 hero images', () => {
+    it('has 7 hero slides', () => {
         expect(component.heroImages.length).toBe(7);
     });
 
@@ -35,15 +40,18 @@ describe('HeroComponent', () => {
         expect(component.currentIndex()).toBe(0);
     });
 
-    it('all image paths start with assets/', () => {
-        expect(
-            component.heroImages.every((img) => img.startsWith('assets/')),
-        ).toBe(true);
+    it('every slide has an id and non-empty alt text', () => {
+        for (const img of component.heroImages) {
+            expect(img.id).toBeTruthy();
+            expect(img.alt).toBeTruthy();
+            expect(typeof img.id).toBe('string');
+            expect(typeof img.alt).toBe('string');
+        }
     });
 
     it('startCarousel advances the index every 5 seconds', () => {
         vi.useFakeTimers();
-        component.startCarousel();
+        startCarousel(component);
 
         expect(component.currentIndex()).toBe(0);
         vi.advanceTimersByTime(5000);
@@ -56,7 +64,7 @@ describe('HeroComponent', () => {
 
     it('carousel wraps around after the last image', () => {
         vi.useFakeTimers();
-        component.startCarousel();
+        startCarousel(component);
 
         vi.advanceTimersByTime(5000 * 7); // 7 full cycles
         expect(component.currentIndex()).toBe(0);
@@ -66,7 +74,7 @@ describe('HeroComponent', () => {
 
     it('ngOnDestroy stops the carousel', () => {
         vi.useFakeTimers();
-        component.startCarousel();
+        startCarousel(component);
         vi.advanceTimersByTime(5000);
         expect(component.currentIndex()).toBe(1);
 

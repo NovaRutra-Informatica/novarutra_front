@@ -4,6 +4,12 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+        <!-- Anchors every relative asset URL (main-*.js, styles-*.css) to the
+             site root. Without it, an index.html served at a deep path — e.g.
+             by a stale service worker — resolves them against that path,
+             the bundle 404s and the page renders blank. -->
+        <base href="/">
+
         <title>
             NovaRutra Informática | Manutenção de Computadores em São Paulo
         </title>
@@ -214,9 +220,9 @@
         <link rel="preload" href="/assets/fonts/fa-subset/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="">
         <link rel="preload" href="/assets/fonts/poppins-v24-latin/poppins-v24-latin-regular.woff2" as="font" type="font/woff2" crossorigin="">
 
-        <!-- Static hosting CSP (GitHub Pages / Cloudflare). Add email
-             provider origins to connect-src when integrating the form. -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://novarutra.com.br; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; worker-src 'self'; manifest-src 'self';">
+        <!-- Static hosting CSP (GitHub Pages / Cloudflare). api.emailjs.com is
+             the endpoint the contact form posts to. -->
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://novarutra.com.br https://api.emailjs.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; worker-src 'self'; manifest-src 'self';">
 
         <!-- When JS is disabled, suppress the prerendered SSR HTML so only
              the <noscript> fallback below is visible. -->
@@ -230,7 +236,7 @@
                 }
             </style>
         </noscript>
-    <style>@font-face{font-display:swap;font-family:Poppins;font-style:normal;font-weight:400;src:url("./media/poppins-v24-latin-regular-SFWTNBQB.woff2") format("woff2")}@font-face{font-display:swap;font-family:Poppins;font-style:normal;font-weight:600;src:url("./media/poppins-v24-latin-600-3BUSBBSI.woff2") format("woff2")}@font-face{font-display:swap;font-family:Poppins;font-style:normal;font-weight:700;src:url("./media/poppins-v24-latin-700-TKEB4KWA.woff2") format("woff2")}:root{--primary-color:#007bff;--primary-text:#3b96ff;--primary-strong:#0062cc;--primary-glow:rgba(0, 123, 255, .5);--bg-dark:#0a0a0a;--bg-card:#141414;--text-main:#ffffff;--text-muted:#a0a0a0;--font-main:Poppins, sans-serif;--glass-bg:rgba(20, 20, 20, .85);--glass-border:1px solid rgba(255, 255, 255, .1)}*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:100px}body{font-family:var(--font-main),serif;background-color:var(--bg-dark);color:var(--text-main);min-height:100vh;width:100%;overflow-x:hidden;line-height:1.6}</style><link rel="stylesheet" href="styles-ZDJCNCW7.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles-ZDJCNCW7.css"></noscript></head>
+    <style>@font-face{font-display:swap;font-family:Poppins;font-style:normal;font-weight:400;src:url("./media/poppins-v24-latin-regular-SFWTNBQB.woff2") format("woff2")}@font-face{font-display:swap;font-family:Poppins;font-style:normal;font-weight:600;src:url("./media/poppins-v24-latin-600-3BUSBBSI.woff2") format("woff2")}@font-face{font-display:swap;font-family:Poppins;font-style:normal;font-weight:700;src:url("./media/poppins-v24-latin-700-TKEB4KWA.woff2") format("woff2")}:root{--primary-color:#007bff;--primary-text:#3b96ff;--primary-strong:#0062cc;--primary-glow:rgba(0, 123, 255, .5);--bg-dark:#0a0a0a;--bg-card:#141414;--text-main:#ffffff;--text-muted:#a0a0a0;--font-main:Poppins, sans-serif;--glass-bg:rgba(20, 20, 20, .85);--glass-border:1px solid rgba(255, 255, 255, .1)}*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:100px}body{font-family:var(--font-main),serif;background-color:var(--bg-dark);color:var(--text-main);min-height:100vh;width:100%;overflow-x:hidden;line-height:1.6}</style><link rel="stylesheet" href="styles-L4XYZZXW.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles-L4XYZZXW.css"></noscript></head>
 
     <body ngcm="">
         <app-root></app-root>
@@ -545,5 +551,5 @@
                 }
             </style>
         </noscript>
-    <script src="main-J2V6DAIG.js" type="module"></script></body>
+    <link rel="modulepreload" href="chunk-7CGTOI24.js"><script src="main-EEDOPXZV.js" type="module"></script></body>
 </html>

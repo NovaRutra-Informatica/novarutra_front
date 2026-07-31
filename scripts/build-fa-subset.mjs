@@ -54,6 +54,7 @@ const ICON_INVENTORY = {
         'check-circle',
         'spinner',
         'heart',
+        'triangle-exclamation',
     ],
     brands: ['whatsapp', 'instagram', 'linkedin'],
 };
@@ -89,6 +90,7 @@ const UNICODE = {
     'check-circle': 'f058',
     spinner: 'f110',
     heart: 'f004',
+    'triangle-exclamation': 'f071',
     // brands
     whatsapp: 'f232',
     instagram: 'f16d',

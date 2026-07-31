@@ -4,6 +4,12 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+        <!-- Anchors every relative asset URL (main-*.js, styles-*.css) to the
+             site root. Without it, an index.html served at a deep path — e.g.
+             by a stale service worker — resolves them against that path,
+             the bundle 404s and the page renders blank. -->
+        <base href="/" />
+
         <title>
             NovaRutra Informática | Manutenção de Computadores em São Paulo
         </title>
@@ -267,11 +273,11 @@
             crossorigin
         />
 
-        <!-- Static hosting CSP (GitHub Pages / Cloudflare). Add email
-             provider origins to connect-src when integrating the form. -->
+        <!-- Static hosting CSP (GitHub Pages / Cloudflare). api.emailjs.com is
+             the endpoint the contact form posts to. -->
         <meta
             http-equiv="Content-Security-Policy"
-            content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://novarutra.com.br; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; worker-src 'self'; manifest-src 'self';"
+            content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://novarutra.com.br https://api.emailjs.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; worker-src 'self'; manifest-src 'self';"
         />
 
         <!-- When JS is disabled, suppress the prerendered SSR HTML so only

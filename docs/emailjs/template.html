@@ -1,0 +1,144 @@
+<!--
+  Template do EmailJS — cole o conteúdo abaixo no editor de código (</>) do
+  template em https://dashboard.emailjs.com/admin/templates
+
+  Variáveis usadas (precisam bater com src/app/services/email.service.ts):
+    {{from_name}}   nome digitado no formulário
+    {{from_email}}  e-mail do visitante
+    {{company}}     empresa (opcional; envia "Não informado" quando vazio)
+    {{message}}     texto da mensagem
+
+  Use chaves duplas, nunca triplas: o EmailJS escapa HTML em {{var}}, o que
+  impede que alguém injete markup pelo formulário.
+
+  Layout em tabela + estilos inline de propósito: Gmail, Outlook e Apple Mail
+  descartam <style> no <head> e não suportam flex/grid de forma confiável.
+-->
+<div
+    style="margin: 0; padding: 24px 12px; background-color: #f4f5f7; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;"
+>
+    <table
+        role="presentation"
+        cellpadding="0"
+        cellspacing="0"
+        border="0"
+        width="100%"
+        style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);"
+    >
+        <!-- Cabeçalho -->
+        <tr>
+            <td
+                style="padding: 28px 32px; background-color: #0a0a0a; color: #ffffff;"
+            >
+                <p
+                    style="margin: 0 0 6px; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: #3b96ff;"
+                >
+                    NovaRutra Informática
+                </p>
+                <h1 style="margin: 0; font-size: 20px; font-weight: 700;">
+                    Novo contato pelo site
+                </h1>
+            </td>
+        </tr>
+
+        <!-- Dados do contato -->
+        <tr>
+            <td style="padding: 28px 32px 8px;">
+                <table
+                    role="presentation"
+                    cellpadding="0"
+                    cellspacing="0"
+                    border="0"
+                    width="100%"
+                >
+                    <tr>
+                        <td style="padding-bottom: 16px;">
+                            <p
+                                style="margin: 0 0 4px; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #8a8f98;"
+                            >
+                                Nome
+                            </p>
+                            <p
+                                style="margin: 0; font-size: 16px; font-weight: 600; color: #16181d;"
+                            >
+                                {{from_name}}
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-bottom: 16px;">
+                            <p
+                                style="margin: 0 0 4px; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #8a8f98;"
+                            >
+                                E-mail
+                            </p>
+                            <p style="margin: 0; font-size: 16px; font-weight: 600;">
+                                <a
+                                    href="mailto:{{from_email}}"
+                                    style="color: #007bff; text-decoration: none;"
+                                    >{{from_email}}</a
+                                >
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-bottom: 8px;">
+                            <p
+                                style="margin: 0 0 4px; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #8a8f98;"
+                            >
+                                Empresa
+                            </p>
+                            <p
+                                style="margin: 0; font-size: 16px; font-weight: 600; color: #16181d;"
+                            >
+                                {{company}}
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <!-- Mensagem -->
+        <tr>
+            <td style="padding: 12px 32px 28px;">
+                <p
+                    style="margin: 0 0 8px; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #8a8f98;"
+                >
+                    Mensagem
+                </p>
+                <!-- pre-wrap preserva as quebras de linha digitadas no textarea -->
+                <div
+                    style="padding: 16px 18px; border-left: 3px solid #007bff; background-color: #f7f9fc; border-radius: 6px; font-size: 15px; line-height: 1.65; color: #2b2f36; white-space: pre-wrap;"
+                >
+{{message}}
+                </div>
+            </td>
+        </tr>
+
+        <!-- Ação -->
+        <tr>
+            <td style="padding: 0 32px 28px;">
+                <a
+                    href="mailto:{{from_email}}"
+                    style="display: inline-block; padding: 12px 24px; background-color: #007bff; color: #ffffff; font-size: 15px; font-weight: 600; text-decoration: none; border-radius: 8px;"
+                    >Responder para {{from_name}}</a
+                >
+            </td>
+        </tr>
+
+        <!-- Rodapé -->
+        <tr>
+            <td
+                style="padding: 18px 32px 24px; border-top: 1px solid #e8eaed; font-size: 12px; line-height: 1.6; color: #8a8f98;"
+            >
+                Enviado automaticamente pelo formulário de contato de
+                <a
+                    href="https://novarutra.com.br"
+                    style="color: #007bff; text-decoration: none;"
+                    >novarutra.com.br</a
+                >
+            </td>
+        </tr>
+    </table>
+</div>

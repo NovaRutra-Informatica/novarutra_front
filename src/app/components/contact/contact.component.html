@@ -55,7 +55,7 @@
                 <div class="decoration-circle" aria-hidden="true"></div>
             </aside>
 
-            @if (isSent) {
+            @if (isSent()) {
                 <div class="success-message" role="status" aria-live="polite">
                     <i class="fas fa-check-circle" aria-hidden="true"></i>
                     <div>
@@ -122,13 +122,23 @@
                         ></textarea>
                     </div>
 
+                    @if (errorMessage()) {
+                        <p class="form-error" role="alert">
+                            <i
+                                class="fas fa-triangle-exclamation"
+                                aria-hidden="true"
+                            ></i>
+                            {{ errorMessage() }}
+                        </p>
+                    }
+
                     <button
                         type="submit"
                         class="btn-submit"
-                        [disabled]="isSending"
-                        [attr.aria-busy]="isSending"
+                        [disabled]="isSending()"
+                        [attr.aria-busy]="isSending()"
                     >
-                        @if (isSending) {
+                        @if (isSending()) {
                             <i
                                 class="fas fa-spinner fa-spin"
                                 aria-hidden="true"

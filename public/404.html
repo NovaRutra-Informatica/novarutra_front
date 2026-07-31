@@ -2,25 +2,231 @@
 <html lang="pt-br">
     <head>
         <meta charset="utf-8" />
-        <title>NovaRutra Informática</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="robots" content="noindex" />
+        <title>Página não encontrada | NovaRutra Informática</title>
+        <meta name="robots" content="noindex, follow" />
+        <meta name="theme-color" content="#007bff" />
+        <link rel="icon" type="image/x-icon" href="/LOGO_WHITE.png" />
+
         <!--
-          GitHub Pages SPA fallback.
-          Preserves the requested path + query and forwards them to the SPA
-          via a sessionStorage handoff that app bootstrap can replay.
-          Works because GH Pages serves this file for any unresolved path
-          under the custom domain.
+          GitHub Pages serves this file (with a real HTTP 404 status) for any
+          path it cannot resolve. It is intentionally self-contained: no
+          bundle, no external CSS, no framework. Every asset URL is absolute
+          so it renders identically at /qualquer/coisa as it does at /x.
         -->
-        <script>
-            (function () {
-                var l = window.location;
-                sessionStorage.setItem('redirect', l.pathname + l.search + l.hash);
-                l.replace('/');
-            })();
-        </script>
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+            html,
+            body {
+                margin: 0;
+                padding: 0;
+                background: #0a0a0a;
+            }
+            body {
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 24px;
+                color: #fff;
+                font-family:
+                    'Poppins',
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    'Segoe UI',
+                    Roboto,
+                    sans-serif;
+            }
+            .bg {
+                position: fixed;
+                inset: 0;
+                background:
+                    radial-gradient(
+                        ellipse 60% 50% at 20% 0%,
+                        rgba(0, 123, 255, 0.18),
+                        transparent 60%
+                    ),
+                    radial-gradient(
+                        ellipse 50% 60% at 90% 100%,
+                        rgba(0, 123, 255, 0.12),
+                        transparent 60%
+                    ),
+                    linear-gradient(135deg, #0a0a0a 0%, #101218 100%);
+                pointer-events: none;
+            }
+            .card {
+                position: relative;
+                width: 100%;
+                max-width: 560px;
+                background: rgba(20, 20, 20, 0.85);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                border-radius: 22px;
+                padding: 40px 36px 32px;
+                box-shadow:
+                    0 30px 60px -20px rgba(0, 0, 0, 0.6),
+                    0 0 0 1px rgba(0, 123, 255, 0.08);
+                text-align: center;
+            }
+            .brand {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 12px;
+                margin-bottom: 28px;
+            }
+            .brand img {
+                display: block;
+                height: 44px;
+                width: auto;
+            }
+            .brand span {
+                font-weight: 700;
+                font-size: 1.05rem;
+                letter-spacing: 2px;
+            }
+            .code {
+                font-size: clamp(4.5rem, 18vw, 7rem);
+                font-weight: 800;
+                line-height: 1;
+                margin: 0;
+                background: linear-gradient(90deg, #007bff 0%, #00d4ff 100%);
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: transparent;
+            }
+            h1 {
+                font-size: clamp(1.3rem, 4vw, 1.7rem);
+                font-weight: 700;
+                margin: 12px 0 14px;
+            }
+            p {
+                font-size: 1rem;
+                line-height: 1.65;
+                color: #a0a0a0;
+                margin: 0 0 28px;
+            }
+            .actions {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                margin-bottom: 28px;
+            }
+            .btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                padding: 14px 20px;
+                border-radius: 12px;
+                font-size: 0.95rem;
+                font-weight: 600;
+                text-decoration: none;
+                transition:
+                    transform 0.2s,
+                    box-shadow 0.2s,
+                    background 0.2s,
+                    border-color 0.2s,
+                    color 0.2s;
+            }
+            .btn-primary {
+                background: #007bff;
+                color: #fff;
+                box-shadow: 0 8px 22px rgba(0, 123, 255, 0.3);
+            }
+            .btn-primary:hover {
+                background: #0069d9;
+                transform: translateY(-1px);
+                box-shadow: 0 10px 26px rgba(0, 123, 255, 0.4);
+            }
+            .btn-outline {
+                background: transparent;
+                color: #fff;
+                border: 1px solid rgba(255, 255, 255, 0.15);
+            }
+            .btn-outline:hover {
+                border-color: #25d366;
+                color: #25d366;
+                background: rgba(37, 211, 102, 0.05);
+            }
+            .links {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px 20px;
+                padding-top: 20px;
+                border-top: 1px solid rgba(255, 255, 255, 0.06);
+            }
+            .links a {
+                font-size: 0.85rem;
+                color: #a0a0a0;
+                text-decoration: none;
+                transition: color 0.2s;
+            }
+            .links a:hover {
+                color: #3b96ff;
+            }
+            @media (max-width: 520px) {
+                .card {
+                    padding: 32px 24px 24px;
+                    border-radius: 18px;
+                }
+            }
+            @media (prefers-reduced-motion: reduce) {
+                .btn {
+                    transition: none;
+                }
+                .btn:hover {
+                    transform: none;
+                }
+            }
+        </style>
     </head>
+
     <body>
-        <p>Redirecionando…</p>
+        <div class="bg" aria-hidden="true"></div>
+
+        <main class="card">
+            <header class="brand">
+                <img
+                    src="/assets/logos/LOGO_WHITE-WITHOUT_BACKGROUND-90.webp"
+                    alt=""
+                    width="44"
+                    height="44"
+                />
+                <span>NOVARUTRA</span>
+            </header>
+
+            <p class="code">404</p>
+
+            <h1>Esta página não existe</h1>
+
+            <p>
+                O endereço que você acessou não foi encontrado. Ele pode ter
+                sido movido, renomeado ou digitado incorretamente.
+            </p>
+
+            <div class="actions">
+                <a class="btn btn-primary" href="/"
+                    >Voltar para a página inicial</a
+                >
+                <a
+                    class="btn btn-outline"
+                    href="https://wa.me/5511955501739"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Falar no WhatsApp
+                </a>
+            </div>
+
+            <nav class="links">
+                <a href="/#servicos">Serviços</a>
+                <a href="/#sobre">Sobre</a>
+                <a href="/#clientes">Clientes</a>
+                <a href="/#contato">Contato</a>
+            </nav>
+        </main>
     </body>
 </html>

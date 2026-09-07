@@ -17,8 +17,6 @@ describe('NavbarComponent', () => {
         fixture.detectChanges();
     });
 
-    // The scroll handler defers via requestAnimationFrame; this helper runs
-    // onWindowScroll and then flushes the pending frame callback.
     const scrollAndFlush = () =>
         new Promise<void>((resolve) => {
             component.onWindowScroll();

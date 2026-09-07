@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FadeInDirective } from '../../directives/fade-in.directive';
 
 @Component({
@@ -6,6 +6,7 @@ import { FadeInDirective } from '../../directives/fade-in.directive';
     standalone: true,
     imports: [FadeInDirective],
     templateUrl: './process.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrls: ['./process.component.scss'],
 })
 export class ProcessComponent {

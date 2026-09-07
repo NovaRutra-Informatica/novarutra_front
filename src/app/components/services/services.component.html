@@ -9,7 +9,6 @@
             </p>
         </header>
 
-        <!-- Featured service -->
         <article class="service-featured" appFadeIn>
             <div class="featured-content">
                 <span class="feat-num" aria-hidden="true">01</span>
@@ -41,7 +40,6 @@
             </div>
         </article>
 
-        <!-- Remaining services -->
         <ul class="services-grid" role="list">
             @for (service of services; track service.title; let i = $index) {
                 <li class="service-card" appFadeIn>

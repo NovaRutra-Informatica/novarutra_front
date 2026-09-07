@@ -1,18 +1,7 @@
 #!/usr/bin/env node
 /**
- * Image optimization pipeline.
- *
- * Produces responsive WebP (and AVIF for the hero LCP) variants from the
- * original large JPEG/PNG sources. Output is committed alongside sources
- * so the runtime serves pre-generated files directly from /assets.
- *
- *   npm run build:images
- *
- * Input  : src/assets/image{1,4,6,7,8,9,10}.jpeg        -> hero slides
- *          src/assets/clients/*.{jpg,png}                -> partner logos
- * Output : src/assets/hero/image{n}-{640,1280,1920}.webp
- *          src/assets/hero/image1-{640,1280,1920}.avif   (LCP only)
- *          src/assets/clients/*.webp
+ * Generates responsive WebP/AVIF assets from assets-source.
+ * Run `npm run build:images`; generated files are committed under src/assets.
  */
 
 import sharp from 'sharp';
@@ -36,19 +25,13 @@ const HERO_FILES = [
     'image10.jpeg',
 ];
 
-// 1440 added because most desktop viewports (1366–1536px) were picking the
-// 1920 variant (+36% oversized) when 1440 is a closer match. PSI flagged
-// this as ~256 KiB of wasted bytes across the carousel.
+// NOTE: Keep 1440 to prevent common desktop viewports from downloading the 1920 variant.
 const HERO_WIDTHS = [640, 1280, 1440, 1920];
-// Quality tuned for the carousel's use case: images sit behind a dark
-// gradient overlay + scale(1.05) blur-in, so subtle detail is hidden.
-// PSI was still flagging the 1280 variants at q=65 as over-encoded.
+// NOTE: Hero quality assumes the dark overlay; raising it regresses transfer size with little visible gain.
 const WEBP_QUALITY = 60;
 const AVIF_QUALITY = 48;
 const CLIENT_LOGO_MAX_WIDTH = 400;
 
-// Brand logos used in navbar/footer/og-tags. Output WebP at retina-ready
-// sizes and a small PNG fallback kept at the public/ path for OG/link cards.
 const LOGO_JOBS = [
     {
         src: 'logos/LOGO_WHITE-WITHOUT_BACKGROUND.png',
@@ -56,8 +39,6 @@ const LOGO_JOBS = [
         widths: [90, 180],
         quality: 82,
     },
-    // The banner/OG image stays PNG (metadata consumers cache it); just copy
-    // a smaller WebP alongside for on-site use if ever needed.
 ];
 
 async function ensureDir(dir) {

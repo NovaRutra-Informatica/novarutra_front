@@ -4,6 +4,7 @@ import {
     Inject,
     PLATFORM_ID,
     signal,
+    ChangeDetectionStrategy,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
@@ -11,6 +12,7 @@ import { isPlatformBrowser } from '@angular/common';
     selector: 'app-navbar',
     standalone: true,
     templateUrl: './navbar.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent {
@@ -23,10 +25,7 @@ export class NavbarComponent {
         this.isBrowser = isPlatformBrowser(platformId);
     }
 
-    // Reading window.scrollY and updating the signal on every scroll event
-    // schedules a layout read + style change per tick, which Chrome flags as
-    // a forced reflow. Coalesce reads into a single rAF so the layout query
-    // and the signal write happen once per frame.
+    // NOTE: coalesce scroll reads into rAF to avoid forced reflows.
     @HostListener('window:scroll', [])
     onWindowScroll() {
         if (!this.isBrowser || this.scrollRafId !== null) return;

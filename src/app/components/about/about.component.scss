@@ -1,8 +1,6 @@
 @use 'variables' as *;
 
-// NOTE: .profile-card, .experience-badge, .profile-icon-wrap, .floating-card
-// and their @keyframes float-y live in src/styles.scss (global) to keep this
-// file under the component-style budget.
+// NOTE: Shared profile-card visuals live in src/styles.scss to satisfy the component-style budget.
 
 :host { display: block; }
 
@@ -39,8 +37,6 @@
         gap: 60px;
     }
 }
-
-// ── Left column ──────────────────────────────────────────────────────────────
 
 .about-title {
     margin-bottom: 28px;
@@ -89,8 +85,6 @@
         font-size: 1rem;
     }
 }
-
-// ── Right column ─────────────────────────────────────────────────────────────
 
 .about-visual {
     position: relative;

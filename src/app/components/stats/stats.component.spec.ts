@@ -52,7 +52,6 @@ describe('StatsComponent', () => {
     });
 
     it('shows final stat values on server render (no animation)', () => {
-        // CountUpDirective in server mode sets textContent immediately
         const numbers = fixture.nativeElement.querySelectorAll('.number');
         expect(numbers[0].textContent).toContain('150');
         expect(numbers[2].textContent).toContain('100');

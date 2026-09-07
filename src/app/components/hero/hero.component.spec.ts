@@ -3,8 +3,7 @@ import { PLATFORM_ID } from '@angular/core';
 import { vi } from 'vitest';
 import { HeroComponent } from './hero.component';
 
-// startCarousel is `private` on the component — tests reach it via this helper
-// so we don't widen the production API just for testing.
+// NOTE: keep the production API private while allowing timer-focused tests.
 const startCarousel = (c: HeroComponent) =>
     (c as unknown as { startCarousel: () => void }).startCarousel();
 
@@ -15,7 +14,6 @@ describe('HeroComponent', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             imports: [HeroComponent],
-            // server prevents ngOnInit from auto-starting the interval
             providers: [{ provide: PLATFORM_ID, useValue: 'server' }],
         }).compileComponents();
 
@@ -66,7 +64,7 @@ describe('HeroComponent', () => {
         vi.useFakeTimers();
         startCarousel(component);
 
-        vi.advanceTimersByTime(5000 * 7); // 7 full cycles
+        vi.advanceTimersByTime(5000 * 7);
         expect(component.currentIndex()).toBe(0);
 
         vi.clearAllTimers();
@@ -80,7 +78,7 @@ describe('HeroComponent', () => {
 
         component.ngOnDestroy();
         vi.advanceTimersByTime(5000);
-        expect(component.currentIndex()).toBe(1); // stays at 1
+        expect(component.currentIndex()).toBe(1);
     });
 
     it('renders hero section with id "inicio"', () => {

@@ -1,7 +1,6 @@
 @use 'variables' as *;
 
-// NOTE: orbit-wrapper, ring, orbit-center and icon-breathe keyframes live in
-// src/styles.scss (global) to keep this file under the component-style budget.
+// NOTE: Shared service-card visuals live in src/styles.scss to satisfy the component-style budget.
 
 :host { display: block; }
 
@@ -16,8 +15,6 @@
     line-height: 1.7;
     color: $text-muted;
 }
-
-// ── Featured card ────────────────────────────────────────────────────────────
 
 .service-featured {
     position: relative;
@@ -97,8 +94,6 @@
     @media (max-width: $mobile) { font-size: 5rem; }
 }
 
-// .feat-icon and .card-icon live in styles.scss (global).
-// Chip visuals are on .chip/.chip--uppercase (global); .feat-chips is layout only.
 .feat-chips {
     display: flex;
     flex-wrap: wrap;
@@ -113,8 +108,6 @@
     justify-content: center;
 }
 
-// ── Services grid ────────────────────────────────────────────────────────────
-
 .services-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -127,7 +120,6 @@
     @media (max-width: $mobile) { grid-template-columns: 1fr; }
 }
 
-// .service-card (corner brackets, hover) and .card-num live in styles.scss.
 .service-card {
     h3 {
         margin-bottom: 10px;
@@ -142,4 +134,3 @@
         color: $text-muted;
     }
 }
-

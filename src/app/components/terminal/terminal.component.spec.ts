@@ -92,7 +92,6 @@ describe('TerminalComponent', () => {
             const output = fixture.nativeElement.querySelector(
                 '.output-text',
             ) as HTMLElement;
-            // Cursor is the only child text; actual text not typed yet
             expect(output.textContent?.replace('▋', '').trim()).toBe('');
         });
 

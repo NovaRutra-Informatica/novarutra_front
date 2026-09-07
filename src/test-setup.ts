@@ -1,2 +1,1 @@
-// Global test setup – intentionally empty.
-// fakeAsync is not used; use vi.useFakeTimers() for timer control.
+// NOTE: use vi.useFakeTimers(), not Angular fakeAsync, for timer control.

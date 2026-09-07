@@ -66,10 +66,7 @@ body {
     text-shadow: 0 0 20px var(--primary-glow);
 }
 
-// ── Shared layout utilities ──────────────────────────────────────────────────
-// These used to live in every component stylesheet. Centralizing them drops
-// roughly 1.5 KB of duplicated CSS across the bundle and keeps the scoped
-// component styles under the strict anyComponentStyle budget.
+// NOTE: Shared component styles stay global to satisfy the anyComponentStyle budget.
 
 .container {
     max-width: 1200px;
@@ -105,14 +102,12 @@ body {
     margin-bottom: 14px;
 }
 
-// Heading used as the main section title across components.
 .section-title {
     font-size: clamp(1.8rem, 3vw, 2.6rem);
     font-weight: 800;
     color: $text-main;
 }
 
-// Standard vertical rhythm for full-width sections.
 .section-padding {
     padding: 110px 20px;
 
@@ -120,8 +115,6 @@ body {
         padding: 70px 20px;
     }
 }
-
-// ── Shared keyframes ─────────────────────────────────────────────────────────
 
 @keyframes float-y {
     0%, 100% { transform: translateY(0); }
@@ -132,10 +125,6 @@ body {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
 }
-
-// Component-scoped animations live here to keep individual component
-// stylesheets under the strict anyComponentStyle budget. The classes that
-// *use* these animations stay in their component file.
 
 @keyframes dot-pulse {
     0%, 100% {
@@ -177,9 +166,7 @@ body {
     50%      { transform: scale(1.04); opacity: 0.6; }
 }
 
-// Hero copy animation: slides up without touching opacity so the LCP element
-// ships visible on the very first paint. Lighthouse was reporting a 3.3s
-// element-render-delay because fade-in-1 started at opacity:0.
+// NOTE: Do not animate opacity here; the hero copy is the LCP element.
 @keyframes hero-fade-up {
     from { transform: translateY(30px); }
     to   { transform: translateY(0); }
@@ -197,12 +184,7 @@ body {
     100% { transform: scale(1.5); opacity: 0; }
 }
 
-// ── Motion toggles ───────────────────────────────────────────────────────────
-// Respect the user's OS-level motion preference, and drop the most expensive
-// decorative animations on mobile (coarse pointer + no hover). This was the
-// biggest contributor to the "Style & Layout 2.6s" main-thread time on mobile
-// — the tradeoff is that pulses/floats still work on desktop where GPUs are
-// strong enough to composite them cheaply.
+// NOTE: Expensive decorative animations are disabled for reduced-motion and touch users.
 @media (prefers-reduced-motion: reduce), (hover: none) and (pointer: coarse) {
     .floating-card,
     .badge-tech::after,
@@ -220,10 +202,6 @@ body {
         &.active { transform: none; }
     }
 }
-
-// ── Services "featured" orbit decoration ─────────────────────────────────────
-// These classes are only used by the services featured card, but live here
-// so the component stylesheet stays under the strict anyComponentStyle budget.
 
 .orbit-wrapper {
     position: relative;
@@ -288,7 +266,6 @@ body {
     50%      { filter: drop-shadow(0 0 28px rgba($primary-color, 0.9)); }
 }
 
-// Chip-style inline labels (services featured + about tech list).
 .chip {
     padding: 4px 12px;
     border: 1px solid rgba($primary-color, 0.25);
@@ -308,9 +285,6 @@ body {
     letter-spacing: 0.4px;
     text-transform: uppercase;
 }
-
-// ── About — profile card system ──────────────────────────────────────────────
-// Unique classes, but live here to keep about.component.scss under budget.
 
 .profile-card {
     position: relative;
@@ -389,8 +363,6 @@ body {
     }
 }
 
-// ── Services — service-card decorations ──────────────────────────────────────
-
 .service-card {
     position: relative;
     overflow: hidden;
@@ -403,7 +375,6 @@ body {
         transform 0.3s,
         box-shadow 0.3s;
 
-    // Corner-bracket decorations
     &::before,
     &::after {
         content: '';
@@ -498,8 +469,6 @@ body {
     }
 }
 
-// ── Hero — full-screen carousel background ──────────────────────────────────
-
 .hero-bg-carousel {
     position: absolute;
     inset: 0;
@@ -545,8 +514,6 @@ body {
         }
     }
 }
-
-// ── Contact — form, channels, success ────────────────────────────────────────
 
 .contact-form {
     display: flex;

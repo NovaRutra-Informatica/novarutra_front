@@ -7,6 +7,7 @@ import {
     OnDestroy,
     PLATFORM_ID,
     signal,
+    ChangeDetectionStrategy,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
@@ -14,6 +15,7 @@ import { isPlatformBrowser } from '@angular/common';
     selector: 'app-terminal',
     standalone: true,
     templateUrl: './terminal.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './terminal.component.scss',
 })
 export class TerminalComponent implements AfterViewInit, OnDestroy {

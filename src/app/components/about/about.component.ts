@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FadeInDirective } from '../../directives/fade-in.directive';
 import { TerminalComponent } from '../terminal/terminal.component';
 
@@ -7,6 +7,7 @@ import { TerminalComponent } from '../terminal/terminal.component';
     standalone: true,
     imports: [FadeInDirective, TerminalComponent],
     templateUrl: './about.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './about.component.scss',
 })
 export class AboutComponent {

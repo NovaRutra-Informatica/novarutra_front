@@ -20,10 +20,7 @@ export class FadeInDirective {
     constructor() {
         if (!this.isBrowser) return;
 
-        // afterNextRender runs after the first browser render commit, so
-        // reading layout (what IntersectionObserver.observe() does internally)
-        // happens outside the hydration path and does not force an early
-        // layout recalculation.
+        // NOTE: observe only after hydration to avoid an early layout recalculation.
         afterNextRender(() => {
             this.renderer.addClass(this.el.nativeElement, 'fade-in-up');
 

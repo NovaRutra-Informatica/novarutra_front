@@ -13,13 +13,10 @@
     @media (max-width: $mobile) { padding: 40px 0; }
 }
 
-// Stats container sits above the circuit SVG overlay.
 .container {
     position: relative;
     z-index: 1;
 }
-
-// ── Circuit SVG overlay ──────────────────────────────────────────────────────
 
 .circuit-svg {
     position: absolute;
@@ -37,8 +34,6 @@
     stroke-linecap: round;
 }
 
-// Keyframes via-pulse, flow-lr, number-glow live in styles.scss (global).
-
 .vias circle {
     fill: rgba($primary-color, 0.25);
     stroke: rgba($primary-color, 0.4);
@@ -48,8 +43,6 @@
     &:nth-child(2n) { animation-delay: -1.5s; }
     &:nth-child(3n) { animation-delay: -0.8s; }
 }
-
-// ── Animated packets ─────────────────────────────────────────────────────────
 
 .packet {
     fill: none;
@@ -89,8 +82,6 @@
         animation: flow-lr 3.8s linear infinite 1.8s;
     }
 }
-
-// ── Stats numbers ────────────────────────────────────────────────────────────
 
 .stats-grid {
     display: grid;

@@ -2,25 +2,19 @@ $primary-color: #007bff;
 $primary-glow: rgba(0, 123, 255, 0.5);
 $secondary-color: #00d4ff;
 
-// Text variant of primary color (passes WCAG AA for small text on dark bg).
-// Use this for inline text ("section-tag", badges, muted accent labels).
-// #3b96ff on #0a0a0a ≈ 6.3:1 contrast.
+// NOTE: Text accent passes WCAG AA on $bg-dark (approximately 6.3:1).
 $primary-text: #3b96ff;
 
-// Darker variant for button *backgrounds* paired with white text.
-// #0062cc on #fff ≈ 4.83:1, passes WCAG AA for normal text.
+// NOTE: Button accent passes WCAG AA with white text (approximately 4.83:1).
 $primary-strong: #0062cc;
 
-// Cores de Fundo (Dark Mode)
 $bg-dark: #0a0a0a;
 $bg-card: #141414;
 $glass-bg: rgba(20, 20, 20, 0.85);
 $glass-border: 1px solid rgba(255, 255, 255, 0.1);
 
-// Texto
 $text-main: #ffffff;
 $text-muted: #a0a0a0;
 $font-main: 'Poppins', sans-serif;
 
-// Breakpoints
 $mobile: 768px;

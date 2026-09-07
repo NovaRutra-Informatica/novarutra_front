@@ -11,10 +11,7 @@ export interface ContactPayload {
 @Injectable({ providedIn: 'root' })
 export class EmailService {
     async send(payload: ContactPayload): Promise<void> {
-        // Imported on demand rather than at module scope: the SDK touches
-        // browser globals (it would run during prerender otherwise), and this
-        // keeps ~10 KB out of the initial bundle for the majority of visitors
-        // who never submit the form.
+        // NOTE: Lazy import avoids browser globals during prerender and keeps the SDK out of the initial bundle.
         const emailjs = (await import('@emailjs/browser')).default;
 
         await emailjs.send(

@@ -2,8 +2,6 @@
 
 :host { display: block; }
 
-// .hero-bg-carousel (overlay + bg-slide + img) lives in styles.scss (global).
-
 .hero {
     position: relative;
     display: flex;
@@ -14,7 +12,6 @@
     color: $text-main;
 }
 
-// Hero container needs z-index to sit above the carousel.
 .container { z-index: 2; }
 
 .content { max-width: 700px; }
@@ -44,8 +41,6 @@
         animation: badge-pulse 3.5s ease-in-out infinite;
     }
 }
-// @keyframes badge-pulse / hero-fade-up / bounce live in src/styles.scss.
-
 h1 {
     font-size: 3.5rem;
     font-weight: 700;
@@ -124,8 +119,7 @@ p {
     }
 }
 
-// Hero copy slide-up (keyframe in global). `both` keeps the starting transform
-// applied during animation-delay so staggered items don't jump.
+// NOTE: `both` prevents staggered items from jumping before their delay ends.
 [class^='fade-in-'] {
     animation: hero-fade-up 0.8s ease-out both;
 }

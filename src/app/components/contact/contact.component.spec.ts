@@ -45,8 +45,6 @@ describe('ContactComponent', () => {
         expect(component.errorMessage()).toBe('');
     });
 
-    // ── Validation ───────────────────────────────────────────────────────────
-
     it('rejects an empty form without calling the email service', async () => {
         await component.sendMessage();
 
@@ -81,8 +79,6 @@ describe('ContactComponent', () => {
         expect(send).toHaveBeenCalledOnce();
         expect(component.isSent()).toBe(true);
     });
-
-    // ── Sending ──────────────────────────────────────────────────────────────
 
     it('forwards the form to the email service and resets on success', async () => {
         component.formData = { ...VALID_FORM };
@@ -127,8 +123,6 @@ describe('ContactComponent', () => {
         expect(send).toHaveBeenCalledOnce();
     });
 
-    // ── Failure ──────────────────────────────────────────────────────────────
-
     it('surfaces an error and keeps the form filled when sending fails', async () => {
         send.mockRejectedValue(new Error('network down'));
         component.formData = { ...VALID_FORM };
@@ -153,8 +147,6 @@ describe('ContactComponent', () => {
         expect(component.errorMessage()).toBe('');
         expect(component.isSent()).toBe(true);
     });
-
-    // ── Template ─────────────────────────────────────────────────────────────
 
     it('renders the contact form before submission', () => {
         expect(

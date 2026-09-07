@@ -17,9 +17,7 @@
     text-decoration: none;
     transition: background-color 0.3s ease, transform 0.3s ease;
 
-    // Composited pulse: scale + opacity on a pseudo-element stays on the
-    // compositor thread and avoids the box-shadow repaint the original
-    // animation caused.
+    // NOTE: Keep the pulse on transform/opacity to avoid box-shadow repaints.
     &::before {
         content: '';
         position: absolute;
@@ -56,8 +54,6 @@
     visibility: hidden;
     transition: all 0.3s;
 }
-
-// @keyframes wa-pulse lives in src/styles.scss (global).
 
 @media (prefers-reduced-motion: reduce) {
     .whatsapp-float::before {

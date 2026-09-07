@@ -98,7 +98,6 @@ describe('CountUpDirective', () => {
             const fixture = TestBed.createComponent(TestHostComponent);
             fixture.detectChanges();
             await fixture.whenStable();
-            // No intersection fired → textContent stays at initial '0'
             const span = fixture.nativeElement.querySelector(
                 'span',
             ) as HTMLElement;

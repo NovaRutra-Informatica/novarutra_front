@@ -1,7 +1,6 @@
 @use 'variables' as *;
 
-// NOTE: .contact-form, .form-group, .btn-submit and .success-message live in
-// src/styles.scss (global) to keep this file under the component-style budget.
+// NOTE: Shared contact-form visuals live in src/styles.scss to satisfy the component-style budget.
 
 :host { display: block; }
 
@@ -40,8 +39,6 @@
 
     @media (max-width: 900px) { grid-template-columns: 1fr; }
 }
-
-// ── Left: channels ───────────────────────────────────────────────────────────
 
 .contact-info {
     position: relative;

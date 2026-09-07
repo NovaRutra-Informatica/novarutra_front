@@ -50,7 +50,6 @@ describe('FadeInDirective', () => {
         };
 
         beforeEach(async () => {
-            // Stub IntersectionObserver before TestBed compiles
             Object.defineProperty(window, 'IntersectionObserver', {
                 writable: true,
                 configurable: true,

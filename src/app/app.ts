@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { SeoService } from './services/seo.service';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HeroComponent } from './components/hero/hero.component';
@@ -31,6 +31,7 @@ import { CtaComponent } from './components/cta/cta.component';
         CtaComponent,
     ],
     templateUrl: './app.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './app.scss',
 })
 export class AppComponent {

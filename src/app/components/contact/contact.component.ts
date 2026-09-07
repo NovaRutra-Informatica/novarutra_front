@@ -1,4 +1,9 @@
-import { Component, inject, signal } from '@angular/core';
+import {
+    Component,
+    inject,
+    signal,
+    ChangeDetectionStrategy,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { EmailService } from '../../services/email.service';
 
@@ -9,6 +14,7 @@ const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
     standalone: true,
     imports: [FormsModule],
     templateUrl: './contact.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrls: ['./contact.component.scss'],
 })
 export class ContactComponent {
@@ -16,8 +22,7 @@ export class ContactComponent {
 
     formData = { name: '', email: '', company: '', message: '' };
 
-    // Signals, not plain fields: the app runs zoneless, so state mutated in an
-    // async continuation only repaints if change detection is signal-driven.
+    // NOTE: async form state must remain signal-driven because the app is zoneless.
     readonly isSending = signal(false);
     readonly isSent = signal(false);
     readonly errorMessage = signal('');
@@ -47,7 +52,6 @@ export class ContactComponent {
         }
     }
 
-    // The form is `novalidate`, so the browser does not check anything for us.
     private validate(): string {
         const { name, email, message } = this.formData;
 

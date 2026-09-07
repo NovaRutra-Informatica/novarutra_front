@@ -27,7 +27,6 @@ export class SeoService {
             { name: 'robots', content: 'index, follow' },
             { name: 'theme-color', content: '#007bff' },
 
-            // Open Graph
             { property: 'og:type', content: 'website' },
             { property: 'og:url', content: SITE_URL },
             { property: 'og:title', content: SITE_TITLE },
@@ -37,7 +36,6 @@ export class SeoService {
             { property: 'og:locale', content: 'pt_BR' },
             { property: 'og:site_name', content: 'NovaRutra Informática' },
 
-            // Twitter / X Card
             { name: 'twitter:card', content: 'summary_large_image' },
             { name: 'twitter:title', content: SITE_TITLE },
             { name: 'twitter:description', content: SITE_DESCRIPTION },

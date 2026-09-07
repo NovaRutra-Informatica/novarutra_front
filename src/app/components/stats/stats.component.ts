@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { CountUpDirective } from '../../directives/count-up.directive';
 
 @Component({
@@ -6,6 +6,7 @@ import { CountUpDirective } from '../../directives/count-up.directive';
     standalone: true,
     imports: [CountUpDirective],
     templateUrl: './stats.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './stats.component.scss',
 })
 export class StatsComponent {

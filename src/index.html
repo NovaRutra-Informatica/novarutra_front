@@ -4,17 +4,13 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <!-- Anchors every relative asset URL (main-*.js, styles-*.css) to the
-             site root. Without it, an index.html served at a deep path — e.g.
-             by a stale service worker — resolves them against that path,
-             the bundle 404s and the page renders blank. -->
+        <!-- NOTE: Keep assets rooted when a stale service worker serves this page from a deep URL. -->
         <base href="/" />
 
         <title>
             NovaRutra Informática | Manutenção de Computadores em São Paulo
         </title>
 
-        <!-- Primary SEO -->
         <meta
             name="description"
             content="Manutenção de computadores e servidores em São Paulo. Atendimento presencial na sua casa ou empresa e suporte remoto. Diagnóstico rápido, orçamento transparente e garantia."
@@ -27,13 +23,11 @@
         <meta name="theme-color" content="#007bff" />
         <link rel="canonical" href="https://novarutra.com.br/" />
 
-        <!-- Local / Geo SEO -->
         <meta name="geo.region" content="BR-SP" />
         <meta name="geo.placename" content="São Paulo, SP, Brasil" />
         <meta name="geo.position" content="-23.5505199;-46.6333094" />
         <meta name="ICBM" content="-23.5505199, -46.6333094" />
 
-        <!-- Apple / PWA -->
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-title" content="NovaRutra" />
         <meta
@@ -43,7 +37,6 @@
         <link rel="apple-touch-icon" href="/NovaRutra.png" />
         <link rel="manifest" href="/manifest.webmanifest" />
 
-        <!-- Open Graph -->
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://novarutra.com.br/" />
         <meta
@@ -65,7 +58,6 @@
         <meta property="og:locale" content="pt_BR" />
         <meta property="og:site_name" content="NovaRutra Informática" />
 
-        <!-- Twitter / X Card -->
         <meta name="twitter:card" content="summary_large_image" />
         <meta
             name="twitter:title"
@@ -84,7 +76,6 @@
             content="NovaRutra Informática — Manutenção de Computadores em São Paulo"
         />
 
-        <!-- Structured Data (JSON-LD) -->
         <script type="application/ld+json">
             {
                 "@context": "https://schema.org",
@@ -245,10 +236,8 @@
             }
         </script>
 
-        <!-- Assets -->
         <link rel="icon" type="image/x-icon" href="/LOGO_WHITE.png" />
 
-        <!-- Perf: LCP image (hero slide 1, WebP responsive srcset) -->
         <link
             rel="preload"
             as="image"
@@ -273,15 +262,13 @@
             crossorigin
         />
 
-        <!-- Static hosting CSP (GitHub Pages / Cloudflare). api.emailjs.com is
-             the endpoint the contact form posts to. -->
+        <!-- NOTE: Static-hosting CSP must allow the EmailJS contact endpoint. -->
         <meta
             http-equiv="Content-Security-Policy"
             content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://novarutra.com.br https://api.emailjs.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; worker-src 'self'; manifest-src 'self';"
         />
 
-        <!-- When JS is disabled, suppress the prerendered SSR HTML so only
-             the <noscript> fallback below is visible. -->
+        <!-- NOTE: Hide prerendered content so it does not duplicate the no-JS fallback. -->
         <noscript>
             <style>
                 app-root {
@@ -367,7 +354,7 @@
                                 <rect x="3" y="5" width="18" height="14" rx="2"/>
                                 <path d="M3 7l9 6 9-6"/>
                             </svg>
-                            suporteti@novarutra.com.br
+                            suporteti&#64;novarutra.com.br
                         </a>
                     </div>
 

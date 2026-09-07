@@ -5,6 +5,7 @@ import {
     Inject,
     PLATFORM_ID,
     signal,
+    ChangeDetectionStrategy,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
@@ -17,6 +18,7 @@ interface HeroSlide {
     selector: 'app-hero',
     standalone: true,
     templateUrl: './hero.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrls: ['./hero.component.scss'],
 })
 export class HeroComponent implements OnInit, OnDestroy {
@@ -40,11 +42,17 @@ export class HeroComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         if (!this.isBrowser) return;
-        // Defer the carousel start so it never competes with LCP/hydration.
+        // NOTE: Defer the carousel so it does not compete with LCP or hydration.
         const start = () => this.startCarousel();
         if ('requestIdleCallback' in window) {
-            (window as unknown as { requestIdleCallback: (cb: () => void, opts?: { timeout: number }) => number })
-                .requestIdleCallback(start, { timeout: 3000 });
+            (
+                window as unknown as {
+                    requestIdleCallback: (
+                        cb: () => void,
+                        opts?: { timeout: number },
+                    ) => number;
+                }
+            ).requestIdleCallback(start, { timeout: 3000 });
         } else {
             setTimeout(start, 2000);
         }

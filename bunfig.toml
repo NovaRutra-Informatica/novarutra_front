@@ -1,0 +1,4 @@
+# Shared packages across local projects; keep Node.js as the application runtime.
+[install]
+linker = "isolated"
+globalStore = true
